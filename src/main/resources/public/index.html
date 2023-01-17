@@ -110,10 +110,22 @@
         href="https://www.lhv.ee/et/veebilehe-kasutajatingimused">tingumustega</a></span>
 <br>
 
-<button type="button" class="btn btn-outline-success">Success</button>
+<button type="button" class="btn btn-outline-success" onclick="sendDataToBackEndServer()">Success</button>
 
 <input type="file" name="" id="">
 
+<script>
+
+    function sendDataToBackEndServer() {
+        const inputelement = document.getElementById("first_name")
+
+        let customer = inputelement.value
+
+
+        alert('Uue kliendi andmed saadeti backendile. Eesnimi: ' + customer )
+
+    }
+</script>
 
 </body>
 
