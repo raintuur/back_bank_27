@@ -1,0 +1,22 @@
+body {
+    background-color: aqua;
+}
+
+p {
+    background-color: chartreuse;
+}
+
+h1 {
+    color: aqua;
+}
+
+.myAwesomeColor {
+    background-color: blueviolet;
+}
+
+.myCoolBorder {
+    border: 10px solid black;
+}
+
+#addClientStyle {
+}
