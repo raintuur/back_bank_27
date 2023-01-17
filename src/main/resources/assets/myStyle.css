@@ -1,0 +1,18 @@
+body {
+    background-color: pink;
+}
+
+.myColor {
+
+    background-color: palegreen;
+}
+h1 {
+    background-color: aquamarine;
+}
+#addNewClientStyle {
+
+}
+
+.myCoolBorder {
+    border: 10px solid black;
+}
