@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>HELLO WORLD</title>
-    </head>
+    <link rel="stylesheet" href="../assets/myStyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
     <body>
-    <h1>Meie pank</h1>
+    <h1 class="myAwesomeColor myBoolBorder" >Meie pank</h1>
     <h3>Eriti äge pank</h3>
-    <p>Siin on mingi meie <span style="background-color: aqua"> tekst </span>bla bla bla bla bla bla bla bla </p>
+    <p>Siin on mingi meie <span> tekst </span>bla bla bla bla bla bla bla bla </p>
 
-    <h4>Meie panga kontorid</h4>
+    <h4 class="myAwesomeColor id="officeHeader"">Meie panga kontorid</h4>
 <!--    <ul>-->
 <!--        <li>Tallinn</li>-->
 <!--        <li>Tartu</li>-->
@@ -38,6 +41,34 @@
     </table>
 
     <br><br><br><br><br>
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Eesnimi</th>
+            <th scope="col">Perekonnanimi</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Katri</td>
+            <td>Lattu</td>
+
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Rain</td>
+            <td>Tüür</td>
+        </tr>
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-outline-primary">Nupuke</button>
+    <br>
 
     <h2>Lisa uus klient</h2>
     <label for="first_name">Eesnimi</label>
