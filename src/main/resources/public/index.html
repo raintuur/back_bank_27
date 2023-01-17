@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>HELLO WORLD</title>
+    <link rel="stylesheet" href="../assets/myStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+
 </head>
 <body>
-<h1>Meie pank</h1>
+<h1 class="myAwesomeColor">Meie pank</h1>
 <h3>Eriti äge pank</h3>
-<p>Siin on mingi meie <span style="background-color: aqua"> tekst </span> bla bla bla bla bla bla</p>
+<p>Siin on mingi meie <span> tekst </span> bla bla bla bla bla bla</p>
 
-<h4>Meie panga kontorid</h4>
+<h4 class="myAwesomeColor">Meie panga kontorid</h4>
 <ul>
     <li>Tallinn</li>
     <li>Tartu</li>
@@ -34,11 +38,39 @@
 
 </table>
 
+
+
+<br>
 <br>
 <br>
 
+<table class="table table-dark table-hover">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Eesnimi</th>
+        <th scope="col">Perekonnanimi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Rain</td>
+        <td>Tüür</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Priit</td>
+        <td>Bernotas</td>
+    </tr>
+    </tbody>
+</table>
 
-<h2>Lisa uus klient</h2>
+<br>
+
+
+
+<h2 id="addClientStyle">Lisa uus klient</h2>
 <label for="first_name">Eesnimi:</label>
 <input type="text" id="first_name">
 <br>
@@ -77,37 +109,12 @@
 <input type="checkbox"> <span>Nõustsun kõikde <a
         href="https://www.lhv.ee/et/veebilehe-kasutajatingimused">tingumustega</a></span>
 <br>
-<button type="submit" onclick="showMessage()">Lisa klient</button>
+
+<button type="button" class="btn btn-outline-success">Success</button>
 
 <input type="file" name="" id="">
-<!--todo: elemendid-->
-<!--dasadasdasd-->
-<!--todo: headerid-->
-<!--todo: paragraph-->
-<!--todo: <span>-->
-<!--todo: list <ul> bullet points ja <ol> järjest numbrid -->
-<!--todo: <img>, external, internal, width-->
-<!--todo: <table>-->
-<!--todo: <input> text  (placeholder) -->
-<!--todo: <input> text  (placeholder) -->
-<!--todo: <input> text  (hidden) -->
-<!--todo: <select> (disabled, selected, label) -->
-<!--todo: <input> radio (label, name="group1" )-->
-<!--todo: <input> number (placeholder)-->
-<!--todo: <input> textarea (label, cols, rows)-->
-<!--todo: <input> password (placeholder)-->
-<!--todo: Link <a> external, internal, width-->
-<!--todo: <input> button (placeholder, onclick)-->
 
 
 </body>
-<script>
-    function showMessage() {
-        const element = document.getElementById("descriptionText");
-        const elementValue = element.value
 
-        alert(elementValue)
-    }
-
-</script>
 </html>

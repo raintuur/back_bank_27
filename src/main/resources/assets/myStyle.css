@@ -1,22 +1,28 @@
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-MINGI MUU TEXT
-MINGI MUU TEXT
-MINGI MUU TEXT
-MINGI MUU TEXT
-MINGI MUU TEXT
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
-asideasdas
+body {
+    background-color: aqua;
+}
+
+p {
+    background-color: chartreuse;
+}
+
+
+h1 {
+    color: darkorange;
+}
+
+h1 {
+    color: cadetblue;
+}
+
+
+.myAwesomeColor {
+    background-color: blueviolet;
+}
+
+.myCoolBorder {
+    border: 10px solid black;
+}
+
+#addClientStyle {
+}
