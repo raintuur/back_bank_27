@@ -1,0 +1,28 @@
+body{
+    background-color: azure;
+}
+
+p{
+    background-color: cornflowerblue;
+}
+
+h1 {
+    color: cornsilk;
+    outline-color: black;
+}
+
+h1 {
+    color: burlywood; !important;
+}
+
+.myAwesomeColor {
+    background-color: blue;
+}
+
+.myCoolBorder{
+    border: 10px black;
+}
+
+#addClientStyle {
+
+}
