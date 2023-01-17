@@ -42,8 +42,9 @@
 <label for="näoTundlikkus">Näo tundlikkus:</label>
 <input type="text" id="näoTundlikkus">
 <br>
-<br>
-<input type="text" placeholder="mis värk on?">
+<h4>Kes oled selline üldse?</h4>
+<label for="nimi">Pane nimi siia:</label>
+<input type="text" placeholder="ah?!" id="nimi">
 <br>
 <input type="hidden" placeholder="nähtav">
 <input type="hidden" placeholder="nähtav">
@@ -53,7 +54,7 @@
 <textarea name="eluvalikute põhjendamise kast" cols="30" rows="10"></textarea>
 <br>
 <br>
-<select name="Rippmenüü" onclick="alert('Nüüd ripub teisiti!')">
+<select name="Rippmenüü" onchange="alert('Nüüd ripub teisiti!')">
     <option disabled value selected="0">Kui palju ripub see menüü?</option>
     <option value="1">ripub natuke</option>
     <option value="2">ripub keskmiselt</option>
@@ -72,8 +73,14 @@
 <input type="checkbox"><span>Siin on tekst, millest osa on <a href="www.google.com">link</a>, VAU!</span>
 <br>
 <br>
-<button type="button" class="btn-outline-success" onclick="alert('Ei noh, hästi elame!')">Mulju ühte nuppu ka!</button>
+<button type="button" class="btn-outline-success" onclick="sendDataToBackEndServer()">Mulju ühte nuppu ka!</button>
 <br>
+<script>
+    function sendDataToBackEndServer() {
+    alert('Palju õnne! Said nupu muljumisega hakkama :)')
+    }
+</script>
+
 <!--todo: elemendid-->
 <!--todo: headerid-->
 <!--todo: paragraph-->
