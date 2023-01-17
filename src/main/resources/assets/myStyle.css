@@ -1,0 +1,27 @@
+body {
+    background-color: aqua;
+}
+
+p {
+    background-color: chartreuse;
+}
+
+h1 {
+    color: lawngreen !important;
+}
+
+h1 {
+    color: fuchsia;
+}
+
+.myAwesomeColor {
+    background-color: blue;
+}
+
+.myCoolBorder {
+    border: 10px solid black;
+}
+
+#addClientStyle {
+
+}
