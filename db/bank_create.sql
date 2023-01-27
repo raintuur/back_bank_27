@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-01-27 10:12:00.744
+-- Last modification date: 2023-01-27 10:12:06.276
 
 -- tables
 -- Table: city
@@ -26,7 +26,7 @@ CREATE TABLE location (
 CREATE TABLE location_transaction (
                                       id serial  NOT NULL,
                                       location_id int  NOT NULL,
-                                      transactions_id int  NOT NULL,
+                                      transaction_id int  NOT NULL,
                                       available boolean  NOT NULL,
                                       CONSTRAINT location_transaction_pk PRIMARY KEY (id)
 );
@@ -34,7 +34,7 @@ CREATE TABLE location_transaction (
 -- Table: role
 CREATE TABLE role (
                       id serial  NOT NULL,
-                      name varchar(255)  NOT NULL,
+                      type varchar(50)  NOT NULL,
                       CONSTRAINT role_pk PRIMARY KEY (id)
 );
 
@@ -73,9 +73,9 @@ ALTER TABLE location_transaction ADD CONSTRAINT location_transaction_location
             INITIALLY IMMEDIATE
 ;
 
--- Reference: location_transaction_transactions (table: location_transaction)
-ALTER TABLE location_transaction ADD CONSTRAINT location_transaction_transactions
-    FOREIGN KEY (transactions_id)
+-- Reference: location_transaction_transaction (table: location_transaction)
+ALTER TABLE location_transaction ADD CONSTRAINT location_transaction_transaction
+    FOREIGN KEY (transaction_id)
         REFERENCES transaction (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
