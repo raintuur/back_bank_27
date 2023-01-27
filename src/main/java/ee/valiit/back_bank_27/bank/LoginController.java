@@ -11,10 +11,11 @@ public class LoginController {
     @Operation(summary = "Selle teenusega saab rakendusse sisse logida")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
 
-        LoginResponse response = new LoginResponse();
-        response.setUserId(202);
-        response.setRoleType("Admin");
-        return response;
+        LoginService loginService = new LoginService();
+
+
+
+        return null;
 
     }
 
