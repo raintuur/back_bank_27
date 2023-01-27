@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-01-27 10:05:41.524
+-- Last modification date: 2023-01-27 10:12:06.276
 
 -- tables
 -- Table: city
@@ -52,7 +52,7 @@ CREATE TABLE "user" (
                         username varchar(255)  NOT NULL,
                         password varchar(255)  NOT NULL,
                         status char(1)  NOT NULL,
-                        CONSTRAINT username UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+                        CONSTRAINT user_ak_1 UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                         CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
