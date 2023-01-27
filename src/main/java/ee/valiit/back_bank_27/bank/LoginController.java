@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+
     @GetMapping("/login")
-    @Operation(summary = "Selle teenusega saab rakendusse sisse logida")
+    @Operation(summary = "Selle teenusega saab rakendussse sisse logida")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         LoginResponse response = new LoginResponse();
         response.setUserId(202);
-        response.setRoleType("Admin");
+        response.setRoleType("admin");
         return response;
     }
 
