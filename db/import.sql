@@ -15,3 +15,11 @@ INSERT INTO public."user" (id, role_id, username, password, status) VALUES (3, 1
 
 INSERT INTO public.location (id, city_id, name, number_of_atms, picture, status, longitude, latitude) VALUES (1, 1, 'Sikupilli Prisma', 4, null, 'A', null, null);
 INSERT INTO public.location (id, city_id, name, number_of_atms, picture, status, longitude, latitude) VALUES (2, 2, 'Jõe Prisma', 3, null, 'A', null, null);
+
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (1, 1, 1, true);
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (2, 1, 2, true);
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (3, 1, 3, true);
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (4, 2, 1, true);
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (5, 2, 2, true);
+INSERT INTO public.location_transaction (id, location_id, transaction_id, available) VALUES (6, 2, 3, false);
+
