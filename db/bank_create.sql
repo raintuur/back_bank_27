@@ -17,8 +17,8 @@ CREATE TABLE location (
                           number_of_atms int  NOT NULL,
                           picture bytea  NULL,
                           status char(1)  NOT NULL,
-                          longitude decimal(6,2)  NULL,
-                          latitude decimal(6,2)  NULL,
+                          longitude decimal(8,6)  NULL,
+                          latitude decimal(8,6)  NULL,
                           CONSTRAINT location_pk PRIMARY KEY (id)
 );
 
