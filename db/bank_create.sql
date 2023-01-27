@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-01-27 10:09:35.861
+-- Last modification date: 2023-01-27 10:12:06.276
 
 -- tables
 -- Table: city
@@ -25,8 +25,8 @@ CREATE TABLE location (
 -- Table: location_transaction
 CREATE TABLE location_transaction (
                                       id serial  NOT NULL,
-                                      transaction_id int  NOT NULL,
                                       location_id int  NOT NULL,
+                                      transaction_id int  NOT NULL,
                                       available boolean  NOT NULL,
                                       CONSTRAINT location_transaction_pk PRIMARY KEY (id)
 );
