@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BackBank27Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BackBank27Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BackBank27Application.class, args);
+    }
 
 }
