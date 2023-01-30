@@ -15,9 +15,8 @@ public class LoginController {
     @GetMapping("/login")
     @Operation(summary = "Selle teenusega saab rakendussse sisse logida")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
-
-        loginService.login(username, password);
-        return null;
+        LoginResponse loginResponse = loginService.login(username, password);
+        return loginResponse;
     }
 
 }

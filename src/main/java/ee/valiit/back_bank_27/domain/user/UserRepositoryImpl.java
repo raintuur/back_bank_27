@@ -1,7 +1,9 @@
 package ee.valiit.back_bank_27.domain.user;
 
 import ee.valiit.back_bank_27.domain.user.role.Role;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
 
@@ -14,7 +16,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findById(Integer userId) {
         User user = createUserExample();
-
         return user;
     }
 
@@ -29,4 +30,6 @@ public class UserRepositoryImpl implements UserRepository {
         user.setRole(role);
         return user;
     }
+
+
 }
