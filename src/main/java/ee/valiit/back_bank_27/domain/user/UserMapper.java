@@ -1,10 +1,15 @@
 package ee.valiit.back_bank_27.domain.user;
 
 import ee.valiit.back_bank_27.bank.LoginResponse;
+import org.mapstruct.*;
 
+import java.util.List;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface UserMapper {
 
-        LoginResponse toDto(User user);
-
+    @Mapping(source = "id", target = "userId")
+    @Mapping(source = "role.type", target = "roleType")
+    LoginResponse toDto(User user);
 
 }
