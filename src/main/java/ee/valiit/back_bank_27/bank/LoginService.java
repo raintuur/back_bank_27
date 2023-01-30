@@ -6,6 +6,11 @@ import ee.valiit.back_bank_27.domain.user.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static jdk.internal.org.jline.utils.InfoCmp.Capability.*;
+
 @Service
 public class LoginService {
 
@@ -17,6 +22,7 @@ public class LoginService {
     public LoginResponse login(String username, String password) {
 
         User user = userService.findUser(username, password);
+
         LoginResponse response = userMapper.toDto(user);
 
         return response;
