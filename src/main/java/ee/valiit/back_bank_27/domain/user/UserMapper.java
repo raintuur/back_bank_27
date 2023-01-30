@@ -4,7 +4,7 @@ import ee.valiit.back_bank_27.bank.LoginResponse;
 
 public interface UserMapper {
 
-    LoginResponse userToLoginResponse(User user);
+    LoginResponse toDto(User user);
 
-   LoginResponse toDto(User user);
+
 }

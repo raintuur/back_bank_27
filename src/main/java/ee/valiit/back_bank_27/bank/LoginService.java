@@ -11,14 +11,14 @@ public class LoginService {
 
     @Resource
     private UserService userService;
- @Resource
- private UserMapperImpl userMapper;
+
+    @Resource
+    private UserMapperImpl userMapper;
+
     public LoginResponse login(String username, String password) {
-
         User user = userService.findUser(username, password);
-        userMapper.toDto
-
-        return null;
+        LoginResponse response = userMapper.toDto(user);
+        return response;
     }
 
 
