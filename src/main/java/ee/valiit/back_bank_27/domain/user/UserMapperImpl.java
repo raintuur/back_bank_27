@@ -12,13 +12,11 @@ public class UserMapperImpl implements UserMapper {
 
     @Override
     public LoginResponse toDto(User user) {
-        //TODO: võtame Getteritega vajalikud andmed ja paneme need Setteritega Dto objekti
-
+        // TODO: võtame Getteritega vajalikud andmed ja paneme need Setteritega Dto objekti
         Integer userId = user.getId();
 
-        Role role = user.getRole();
+        String roleType = user.getRole().getType();
 
-        String roleType = role.getType();
 
         LoginResponse response = new LoginResponse();
         response.setUserId(userId);
@@ -28,21 +26,17 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public List<LoginResponse> toDto(List<User> users) {
-
+    public List<LoginResponse> toDtos(List<User> users) {
         List<LoginResponse> responses = new ArrayList<>();
 
-        for (User user : users) {
-
-            responses.add(toDto(user));
-
+        for (
+                User user :
+                users
+        ) {
+            LoginResponse response = toDto(user);
+            responses.add(response);
         }
 
-
         return responses;
-    }
-
-    private static List<User> getUsers(List<User> users) {
-        return users;
     }
 }
