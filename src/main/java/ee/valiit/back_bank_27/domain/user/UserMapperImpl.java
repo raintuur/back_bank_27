@@ -1,17 +1,22 @@
 package ee.valiit.back_bank_27.domain.user;
 
 import ee.valiit.back_bank_27.bank.LoginResponse;
+import ee.valiit.back_bank_27.domain.user.role.Role;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapperImpl implements UserMapper {
-    @Override
-    public LoginResponse userToLoginResponse(User user) {
-        return null;
-    }
 
     @Override
     public LoginResponse toDto(User user) {
-        return null;
+        Integer userId = user.getId();
+
+        Role userRole = user.getRole();
+        String roleType = userRole.getType();
+
+        LoginResponse response = new LoginResponse();
+        response.setUserId(userId);
+        response.setRoleType(roleType);
+        return response;
     }
 }
