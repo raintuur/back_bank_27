@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.bank;
+package ee.valiit.back_bank_27.bank.login;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
