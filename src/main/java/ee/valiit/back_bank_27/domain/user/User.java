@@ -1,5 +1,6 @@
-package ee.valiit.back_bank_27.domain;
+package ee.valiit.back_bank_27.domain.user;
 
+import ee.valiit.back_bank_27.domain.user.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
