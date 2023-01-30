@@ -12,10 +12,12 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
-    @GetMapping("atm/cities")
-    public List<CityDto> getAllCities() {
-       return atmService.getAllCities();
 
+    @GetMapping("/atm/cities")
+    public List<CityDto> getAllCities() {
+        List<CityDto> cities = atmService.getAllCities();
+        return cities;
     }
+
 
 }

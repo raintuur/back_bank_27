@@ -14,12 +14,33 @@ public class AtmService {
     @Resource
     private CityService cityService;
 
+    @Resource
     private CityMapper cityMapper;
 
     public List<CityDto> getAllCities() {
-      List <City> cities = cityService.getAllCities();
+        List<City> cities = cityService.getAllCities();
         List<CityDto> cityDtos = cityMapper.toDtos(cities);
-
         return cityDtos;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
