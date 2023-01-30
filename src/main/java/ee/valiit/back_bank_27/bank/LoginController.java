@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    private LoginService loginService;
 
     @GetMapping("/login")
     @Operation(summary = "Selle teenusega saab rakendussse sisse logida")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
-        LoginService loginService = new LoginService();
-
-
+        loginService.login(username, password);
         return null;
     }
 
