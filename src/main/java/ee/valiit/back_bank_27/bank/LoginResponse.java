@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.bank;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class LoginResponse {
