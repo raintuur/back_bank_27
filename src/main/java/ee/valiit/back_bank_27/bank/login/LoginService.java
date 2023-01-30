@@ -15,13 +15,10 @@ public class LoginService {
     @Resource
     private UserMapper userMapper;
 
-
     public LoginResponse login(String username, String password) {
         User user = userService.findUser(username, password);
         LoginResponse response = userMapper.toDto(user);
         return response;
     }
-
-
 
 }

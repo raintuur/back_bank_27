@@ -8,11 +8,11 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface CityMapper {
 
-
     @Mapping(source = "id", target = "cityId")
     @Mapping(source = "name", target = "cityName")
     CityDto toDto(City city);
 
-    List<CityDto> toDtos(List <City> cities);
+    List<CityDto> toDtos(List<City> cities);
+
 
 }
