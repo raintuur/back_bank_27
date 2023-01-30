@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.bank;
+package ee.valiit.back_bank_27.bank.login;
 
 import ee.valiit.back_bank_27.domain.user.User;
 import ee.valiit.back_bank_27.domain.user.UserMapper;
