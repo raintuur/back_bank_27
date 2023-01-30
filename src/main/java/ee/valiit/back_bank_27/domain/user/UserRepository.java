@@ -1,8 +1,10 @@
 package ee.valiit.back_bank_27.domain.user;
 
+import org.springframework.data.jpa.repository.Query;
+
 public interface UserRepository {
 
-    User findByUserNameAndPassword(String username, String password);
+    User findByUsernameAndPassword(String username, String password);
 
     User findById(Integer userId);
 }

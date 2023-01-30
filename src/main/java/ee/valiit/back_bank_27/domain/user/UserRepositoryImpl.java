@@ -1,26 +1,26 @@
 package ee.valiit.back_bank_27.domain.user;
 
-
 import ee.valiit.back_bank_27.domain.user.role.Role;
+import org.springframework.stereotype.Repository;
 
-public class UserRepositoryImpl implements UserRepository{
+@Repository
+public class UserRepositoryImpl implements UserRepository {
+
+
     @Override
-    public User findByUserNameAndPassword(String username, String password) {
-
-        User user = createUserExaple();
-
+    public User findByUsernameAndPassword(String username, String password) {
+        User user = createUserExample();
         return user;
     }
 
     @Override
     public User findById(Integer userId) {
-        User user = createUserExaple();
-
+        User user = createUserExample();
         return user;
     }
 
-    private static User createUserExaple() {
-        Role role =  new Role(1,"admin");
+    private static User createUserExample() {
+        Role role = new Role(1,"admin");
 
         User user = new User();
         user.setId(3);
@@ -30,4 +30,6 @@ public class UserRepositoryImpl implements UserRepository{
         user.setRole(role);
         return user;
     }
+
+
 }
