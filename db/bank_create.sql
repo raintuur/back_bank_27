@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-01-27 10:05:13.053
+-- Last modification date: 2023-01-27 10:12:06.276
 
 -- tables
 -- Table: city
