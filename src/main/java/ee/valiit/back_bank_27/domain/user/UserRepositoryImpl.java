@@ -5,19 +5,23 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
+
     @Override
     public User findByUsernameAndPassword(String username, String password) {
         User user = createUserExample();
         return user;
     }
+
     @Override
     public User findById(Integer userId) {
-        User userExample = createUserExample();
-        return userExample;
+        User user = createUserExample();
+        return user;
     }
 
     private static User createUserExample() {
-        Role role = new Role(1, "admin");
+        Role role = new Role(1,"admin");
+
         User user = new User();
         user.setId(2);
         user.setUsername("triin");
@@ -26,4 +30,6 @@ public class UserRepositoryImpl implements UserRepository {
         user.setRole(role);
         return user;
     }
+
+
 }
