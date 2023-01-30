@@ -1,13 +1,9 @@
-package ee.valiit.back_bank_27.bank;
+package ee.valiit.back_bank_27.bank.login;
 
 import ee.valiit.back_bank_27.domain.user.User;
-import ee.valiit.back_bank_27.domain.user.UserMapperImpl;
 import ee.valiit.back_bank_27.domain.user.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class LoginService {
@@ -17,12 +13,6 @@ public class LoginService {
 
     @Resource
     private UserMapperImpl userMapper;
-
-    public LoginResponse login(String username, String password) {
-        User user = userService.findUser(username, password);
-        LoginResponse response = userMapper.toDto(user);
-        return response
-    }
 
     public LoginResponse login(String username, String password) {
         User user = userService.findUser(username, password);
