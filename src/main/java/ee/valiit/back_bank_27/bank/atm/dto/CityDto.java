@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.bank.atm;
+package ee.valiit.back_bank_27.bank.atm.dto;
 
 import ee.valiit.back_bank_27.domain.city.City;
 import jakarta.validation.constraints.NotNull;
