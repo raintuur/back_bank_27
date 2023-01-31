@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.domain.user;
 
-import ee.valiit.back_bank_27.bank.LoginResponse;
+import ee.valiit.back_bank_27.bank.login.LoginResponse;
 import org.mapstruct.*;
 
 import java.util.List;
