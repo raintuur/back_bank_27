@@ -54,10 +54,10 @@ public class AtmService {
 
         List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
 
-        //TODO: forloppiga käia läbi dtos locationDTos objektid
-        // igal tsüklil otsime andmebaasist locationId-d ja available abil read mis kuuluvad
-        // antud locationi juurde. Tulemused mäpime transactiontypeDTodeks
-        // Seejärel lisame need atmlocaitonDto välja transactiontype külge.
+        // TODO: for-loopiga käia läbi  kõik locationDtos objektid
+        //  igal tsüklil otsime andmebaasist locationId ja available abil, need read,
+        //  mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks.
+        //  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
 
 //        for (TransactionTypeDto transaction : locationDtos) {
 //
