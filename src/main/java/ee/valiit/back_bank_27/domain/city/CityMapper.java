@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.domain.city;
 
-import ee.valiit.back_bank_27.bank.atm.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

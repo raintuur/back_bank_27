@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm;
 
+import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
