@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.bank.login;
 
+import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,8 +21,7 @@ public class LoginController {
     @Operation(summary = "This service enables the user to log in.", description = "This service returns error message when credentials are incorrect.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Log in failed!", content = @Content(schema = @Schema))
-    })
+            @ApiResponse(responseCode = "404", description = "Login failed!", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         LoginResponse loginResponse = loginService.login(username, password);
         return loginResponse;
