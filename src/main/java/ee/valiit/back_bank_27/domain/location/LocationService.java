@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public class LocationService {
     @Resource
     private LocationRepository locationRepository;
+
 }
