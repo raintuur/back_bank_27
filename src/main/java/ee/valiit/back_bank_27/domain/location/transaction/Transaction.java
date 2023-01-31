@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain;
+package ee.valiit.back_bank_27.domain.location.transaction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
