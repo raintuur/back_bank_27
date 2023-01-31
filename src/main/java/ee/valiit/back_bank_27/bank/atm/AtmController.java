@@ -17,7 +17,7 @@ public class AtmController {
 
 
     @GetMapping("/atm/cities")
-    @Operation(summary = "Finds all cities from system/database", description = "This information is used on frontend to create cities dropdown")
+    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
     public List<CityDto> getAllCities() {
         List<CityDto> cities = atmService.getAllCities();
         return cities;
@@ -28,6 +28,4 @@ public class AtmController {
     public void getAtmLocations(@RequestParam Integer cityId) {
 
     }
-
-
 }

@@ -5,13 +5,11 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface LocationMapper {
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
-    @Mapping(source = "locationid", target = "id")
 
 
-
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
 
 }

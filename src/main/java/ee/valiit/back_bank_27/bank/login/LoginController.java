@@ -18,11 +18,10 @@ public class LoginController {
     private LoginService loginService;
 
     @GetMapping("/login")
-    @Operation(summary = "This service enables user to login", description = "This service will return error when incorrect credentials are provided")
+    @Operation(summary = "This service enables user to log-in", description = "This service will return error when incorrect credentials are provided")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Failed login", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         LoginResponse loginResponse = loginService.login(username, password);
         return loginResponse;

@@ -15,8 +15,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AtmLocationDto implements Serializable {
-    private Integer locationid;
-    private Integer cityId;
+    private Integer locationId;
+
     @Size(max = 255)
     @NotNull
     private String cityName;

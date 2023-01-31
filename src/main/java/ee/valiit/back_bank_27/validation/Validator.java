@@ -13,8 +13,8 @@ public class Validator {
         if (optionalUser.isEmpty()) {
             throw new DataNotFoundException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getCode());
         }
-
         User user = optionalUser.get();
         return user;
     }
+
 }
