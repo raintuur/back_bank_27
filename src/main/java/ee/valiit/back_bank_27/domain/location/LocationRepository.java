@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface LocationRepository extends JpaRepository<AtmLocationDto, Integer> {
-    @Query("select a from AtmLocationDto a where a.city.id = ?1 and a.status = ?2 order by a.city.name, a.name")
-    List<AtmLocationDto> findLocations(Integer id, String status);
+public interface LocationRepository extends JpaRepository<Location, Integer> {
+    @Query("select l from Location l where l.city.id = ?1 and l.status = ?2 order by l.city.name, l.name")
+    List<Location> findLocations(Integer cityId, String status);
+
+
+
 }

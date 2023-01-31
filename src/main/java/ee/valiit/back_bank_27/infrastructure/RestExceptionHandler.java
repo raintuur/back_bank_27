@@ -37,9 +37,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         apiError.setErrorCode(exception.getErrorCode());
         return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
     }
-}
 
-//
+
 //    @Override
 //    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
 //        ApiError apiError = new ApiError();
@@ -72,5 +71,5 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 //        apiError.setErrorCode(errors.toString());
 //        return handleExceptionInternal(exception, apiError, headers, HttpStatus.BAD_REQUEST, request);
 //    }
-//
-//}
+
+}

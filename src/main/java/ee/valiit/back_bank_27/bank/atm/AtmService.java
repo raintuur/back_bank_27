@@ -1,8 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
-import ee.valiit.back_bank_27.bank.atm.dto.LocationDto;
-import ee.valiit.back_bank_27.domain.location.AtmLocationDto;
 import ee.valiit.back_bank_27.domain.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
@@ -19,10 +18,10 @@ public class AtmService {
     private CityService cityService;
 
     @Resource
-    private CityMapper cityMapper;
+    private LocationService locationService;
 
     @Resource
-    private LocationService locationService;
+    private CityMapper cityMapper;
 
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
@@ -30,13 +29,16 @@ public class AtmService {
         return cityDtos;
     }
 
-    public List<LocationDto> getAtmLocations(Integer cityId) {
-        if (cityId == 0) {
+    public List<AtmLocationDto> getAtmLocations(Integer cityId) {
 
+        if (cityId == 0) {
+            // TODO: siis leia kõik locationid
         } else {
-            locationService.
+            // TODO: leia vastava cityId locationid
         }
-        List<AtmLocationDto> locations = locationService.findLocations(cityId);
+
+
+        return null;
     }
 }
 

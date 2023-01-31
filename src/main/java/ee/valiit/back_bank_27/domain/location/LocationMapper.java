@@ -1,16 +1,15 @@
 package ee.valiit.back_bank_27.domain.location;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface LocationMapper {
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
-    @Mapping(source = "")
 
-    List<AtmLocationDto> toDto()
+
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
+    AtmLocationDto toDto(Location location);
 
 }
