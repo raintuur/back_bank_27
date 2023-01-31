@@ -11,6 +11,7 @@ public class CityService {
     @Resource
     private CityRepository cityRepository;
 
+
     public List<City> getAllCities() {
         List<City> cities = cityRepository.findAll();
         return cities;
