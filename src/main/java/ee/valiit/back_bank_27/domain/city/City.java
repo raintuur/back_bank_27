@@ -1,25 +1,24 @@
-package ee.valiit.back_bank_27.domain.user.role;
+package ee.valiit.back_bank_27.domain.city;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "city")
+public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
+    @Size(max = 255)
     @NotNull
-    @Column(name = "type", nullable = false, length = 50)
-    private String type;
+    @Column(name = "name", nullable = false)
+    private String name;
 
 }

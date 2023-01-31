@@ -6,7 +6,6 @@ import ee.valiit.back_bank_27.domain.user.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-//@Service - Projekti laadimisel tehakse sellest klassist üks objekt/instance, et seda kasutada (Bean)
 @Service
 public class LoginService {
 
@@ -17,12 +16,9 @@ public class LoginService {
     private UserMapper userMapper;
 
     public LoginResponse login(String username, String password) {
-        // to be implemented
-
         User user = userService.findUser(username, password);
-
         LoginResponse response = userMapper.toDto(user);
-
         return response;
     }
+
 }

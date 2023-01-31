@@ -1,6 +1,5 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +12,12 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+
     @GetMapping("/atm/cities")
     public List<CityDto> getAllCities() {
         List<CityDto> cities = atmService.getAllCities();
         return cities;
     }
+
 
 }
