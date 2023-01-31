@@ -12,13 +12,11 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
-
     @GetMapping("/login")
     @Operation(summary = "Selle teenusega saab rakendussse sisse logida")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         LoginResponse loginResponse = loginService.login(username, password);
         return loginResponse;
     }
-
 
 }

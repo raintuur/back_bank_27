@@ -18,10 +18,29 @@ public class AtmService {
     private CityMapper cityMapper;
 
     public List<CityDto> getAllCities() {
-
         List<City> cities = cityService.getAllCities();
         List<CityDto> cityDtos = cityMapper.toDtos(cities);
-
         return cityDtos;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

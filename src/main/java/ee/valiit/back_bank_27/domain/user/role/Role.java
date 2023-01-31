@@ -3,10 +3,8 @@ package ee.valiit.back_bank_27.domain.user.role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
