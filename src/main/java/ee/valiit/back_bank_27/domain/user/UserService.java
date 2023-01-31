@@ -1,11 +1,13 @@
 package ee.valiit.back_bank_27.domain.user;
 
-import ee.valiit.back_bank_27.infrastructure.error.ErrorMessage;
 import ee.valiit.back_bank_27.infrastructure.exception.DataNotFoundException;
+import ee.valiit.back_bank_27.validation.Validator;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
+import static ee.valiit.back_bank_27.validation.ErrorMessage.INCORRECT_CREDENTIALS;
 
 @Service
 public class UserService {
@@ -15,11 +17,10 @@ public class UserService {
 
     public User findUser(String username, String password) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
-        if(optionalUser.isEmpty()) {
-            throw new DataNotFoundException();
-        }
-        User user = optionalUser.get();
+        User user = Validator.getValidUser(optionalUser);
         return user;
     }
+
+
 
 }
