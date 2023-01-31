@@ -1,7 +1,9 @@
 package ee.valiit.back_bank_27.bank.atm;
 
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.domain.location.Location;
+import ee.valiit.back_bank_27.domain.location.LocationMapper;
 import ee.valiit.back_bank_27.domain.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
@@ -20,6 +22,9 @@ public class AtmService {
 
     @Resource
     private LocationService locationService;
+    
+    @Resource
+    private LocationMapper locationMapper;
 
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
@@ -27,7 +32,7 @@ public class AtmService {
         return cityDtos;
     }
 
-    public List<Location> getAtmLocations(Integer cityId) {
+    public List<AtmLocationDto> getAtmLocations(Integer cityId) {
 
         List<Location> locations;
 
@@ -36,6 +41,8 @@ public class AtmService {
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
-        return locations;
+        List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
+        return locationDtos;
     }
 }
+// TODO: for loopiga käia läbi kõik locationDtos objektid, igal tsüklil otsime andmebaasist locationId ja available abil need read, mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks ümber. Seejärel lisame need AtmLocationDto välja transactionTypes külge.
