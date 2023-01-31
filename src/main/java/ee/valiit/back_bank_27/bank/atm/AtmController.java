@@ -27,7 +27,6 @@ public class AtmController {
     @GetMapping("/atm/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
     public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
-        List<AtmLocationDto> atmLocations = atmService.getAtmLocations(cityId);
-        return atmLocations;
+        return atmService.getAtmLocations(cityId);
     }
 }

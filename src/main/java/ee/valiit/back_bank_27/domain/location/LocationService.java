@@ -10,13 +10,13 @@ public class LocationService {
     @Resource
     private LocationRepository locationRepository;
 
-    public List<Location> findLocations(Integer cityId) {
+    public List<Location> findActiveLocations(Integer cityId) {
         List<Location> locations = locationRepository.findLocations(cityId, "A");
         return locations;
     }
 
     public List<Location> findActiveLocations() {
-      List<Location> locations = locationRepository.findLocations("A");
-      return locations;
+        List<Location> locations = locationRepository.findLocations("A");
+        return locations;
     }
 }
