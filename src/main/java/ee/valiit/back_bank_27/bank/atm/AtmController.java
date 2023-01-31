@@ -1,6 +1,8 @@
 package ee.valiit.back_bank_27.bank.atm;
 
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,9 @@ public class AtmController {
 
     @GetMapping("/atm/location")
     @Operation(summary = "finds a list of atm locations with transaction data, by cityId", description = "if cityId = 0 returns all ATM locations")
-    public void getAtmLocations(@RequestParam Integer cityId){
+    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId){
 
+        return atmService.getAtmLocations(cityId);
     }
 
 
