@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.infrastructure.error;
+package ee.valiit.back_bank_27.validation;
 
 
 import lombok.Getter;
