@@ -2,6 +2,8 @@ package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.domain.location.Location;
+import ee.valiit.back_bank_27.domain.location.LocationMapper;
 import ee.valiit.back_bank_27.domain.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
@@ -23,6 +25,9 @@ public class AtmService {
     @Resource
     private CityMapper cityMapper;
 
+    @Resource
+    private LocationMapper locationMapper;
+
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
         List<CityDto> cityDtos = cityMapper.toDtos(cities);
@@ -31,14 +36,22 @@ public class AtmService {
 
     public List<AtmLocationDto> getAtmLocations(Integer cityId) {
 
-        if(cityId == 0) {
-            //  todo: siis leia koik locationid
+        List<Location> locations;
+
+        if (cityId == 0) {
+            locations = locationService.findActiveLocations();
         } else {
-            // todo: leia vastava cityId locationid
+            locations = locationService.findActiveLocations(cityId);
         }
 
+        List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
 
-        return null;
+        // TODO: for loopiga kaia labi koik locationDtos
+        //  objektid igal tsuklil otsime andmebaasist locationId ja available abil need read, mis kuuluvad
+        // antud locationi jurde. Tulemused mapimeTransactionTypeDto-deks. Seejarel lisame need AtmLocationDto valja transactionTypes kylge.
+
+
+        return locationDtos;
     }
 }
 
