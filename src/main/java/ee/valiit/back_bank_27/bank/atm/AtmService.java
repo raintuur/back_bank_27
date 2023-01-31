@@ -2,12 +2,15 @@ package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
 import ee.valiit.back_bank_27.domain.location.Location;
 import ee.valiit.back_bank_27.domain.location.LocationMapper;
 import ee.valiit.back_bank_27.domain.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
+import ee.valiit.back_bank_27.domain.location.transaction.LocationTransaction;
+import ee.valiit.back_bank_27.domain.location.transaction.Transaction;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,11 @@ public class AtmService {
     private LocationService locationService;
     @Resource
     private LocationMapper locationMapper;
+    @Resource
+    private Transaction transaction;
+
+    @Resource
+    private LocationTransaction locationTransaction;
 
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
@@ -50,6 +58,11 @@ public class AtmService {
         // igal tsüklil otsime andmebaasist locationId-d ja available abil read mis kuuluvad
         // antud locationi juurde. Tulemused mäpime transactiontypeDTodeks
         // Seejärel lisame need atmlocaitonDto välja transactiontype külge.
+
+//        for (TransactionTypeDto transaction : locationDtos) {
+//
+//            }
+
         return locationDtos;
     }
 }
