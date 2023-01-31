@@ -59,6 +59,11 @@ public class AtmService {
         //  mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks.
         //  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
 
+        for (Location location : locations) {
+            System.out.println(location.getCity());
+
+
+        }
 //        for (TransactionTypeDto transaction : locationDtos) {
 //
 //            }
