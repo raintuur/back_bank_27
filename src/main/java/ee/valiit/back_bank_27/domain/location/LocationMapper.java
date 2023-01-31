@@ -15,6 +15,6 @@ public interface LocationMapper {
     AtmLocationDto toDto(Location location);
 
 
-
     List<AtmLocationDto> toDtos(List<Location> locations);
+
 }
