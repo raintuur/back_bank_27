@@ -22,6 +22,5 @@ public class LoginService {
         return response;
     }
 
-    public List<Location> findActiveLocations;
 
 }
