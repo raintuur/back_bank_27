@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static ee.valiit.back_bank_27.infrastructure.error.ErrorMessage.INCORRECT_CREDENTIALS;
+
 @Service
 public class UserService {
 
@@ -17,7 +19,7 @@ public class UserService {
         Optional<User> optinalUser = userRepository.findByUsernameAndPassword(username, password);
 
         if (optinalUser.isEmpty()) {
-            throw new DataNotFoundException("", "666");
+            throw new DataNotFoundException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getCode());
         }
 
         return optinalUser.get();
