@@ -1,0 +1,26 @@
+package ee.valiit.back_bank_27.bank.atm.dto;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+/**
+ * A DTO for the {@link ee.valiit.back_bank_27.domain.Location} entity
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AtmLocationDto implements Serializable {
+    private Integer locationId;
+    private Integer cityId;
+    @Size(max = 255)
+    @NotNull
+    private String cityName;
+    @Size(max = 255)
+    @NotNull
+    private String locationName;
+}
