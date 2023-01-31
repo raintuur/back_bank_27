@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.bank.login;
 
+import ee.valiit.back_bank_27.domain.location.Location;
 import ee.valiit.back_bank_27.domain.user.User;
 import ee.valiit.back_bank_27.domain.user.UserMapper;
 import ee.valiit.back_bank_27.domain.user.UserService;
@@ -20,5 +21,7 @@ public class LoginService {
         LoginResponse response = userMapper.toDto(user);
         return response;
     }
+
+    public List<Location> findActiveLocations;
 
 }
