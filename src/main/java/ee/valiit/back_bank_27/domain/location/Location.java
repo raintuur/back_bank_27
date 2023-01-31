@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain;
+package ee.valiit.back_bank_27.domain.location;
 
 import ee.valiit.back_bank_27.domain.city.City;
 import jakarta.persistence.*;
