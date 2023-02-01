@@ -18,13 +18,13 @@ public class LocationTransaction {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "transaction_id", nullable = false)
-    private Transaction transaction;
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+    @JoinColumn(name = "transaction_id", nullable = false)
+    private Transaction transaction;
 
     @NotNull
     @Column(name = "available", nullable = false)

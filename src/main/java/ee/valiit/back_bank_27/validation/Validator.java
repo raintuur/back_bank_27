@@ -25,4 +25,5 @@ public class Validator {
             throw new DataNotFoundException(NO_ATM_LOCATIONS.getMessage(), NO_ATM_LOCATIONS.getCode());
         }
     }
+
 }

@@ -11,8 +11,9 @@ public class LocationTransactionService {
     @Resource
     private LocationTransactionRepository locationTransactionRepository;
 
+
     List<LocationTransaction> findLocationTransactions(Integer locationId, Boolean isAvailable) {
         return locationTransactionRepository.findLocationTransactions(locationId, isAvailable);
     }
-    
+
 }

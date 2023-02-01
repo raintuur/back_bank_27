@@ -18,12 +18,14 @@ import java.util.List;
 @NoArgsConstructor
 public class AtmLocationDto implements Serializable {
     private Integer locationId;
+
+    @Size(max = 255)
+    @NotNull
+    private String locationName;
+
     @Size(max = 255)
     @NotNull
     private String cityName;
-    @Size(max = 50)
-    @NotNull
-    private String locationName;
 
     private List<TransactionTypeDto> transactionTypes;
 }

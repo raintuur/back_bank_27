@@ -23,9 +23,9 @@ public class Location {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @Size(max = 50)
+    @Size(max = 255)
     @NotNull
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @NotNull

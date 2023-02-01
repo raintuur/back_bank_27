@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class LocationService {
     @Resource
     private LocationRepository locationRepository;
 
     public List<Location> findActiveLocations(Integer cityId) {
-        List<Location> locations = locationRepository.findLocations(cityId, " A");
+        List<Location> locations = locationRepository.findLocations(cityId, "A");
         Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }

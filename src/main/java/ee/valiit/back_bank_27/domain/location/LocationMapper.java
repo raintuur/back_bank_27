@@ -8,11 +8,13 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface LocationMapper {
 
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
+
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
 
-    List <AtmLocationDto> toDtos(List<Location> locations);
+
+    List<AtmLocationDto> toDtos(List<Location> locations);
 
 }
