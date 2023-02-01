@@ -23,6 +23,10 @@ public class Location {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @NotNull
     @Column(name = "number_of_atms", nullable = false)
@@ -41,10 +45,5 @@ public class Location {
 
     @Column(name = "latitude", precision = 6, scale = 2)
     private BigDecimal latitude;
-
-    @Size(max = 255)
-    @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
 
 }

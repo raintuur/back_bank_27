@@ -6,8 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static ee.valiit.back_bank_27.bank.Status.ACTIVE;
+import java.util.Optional;
 
 @Service
 public class LocationService {
@@ -15,23 +14,21 @@ public class LocationService {
     private LocationRepository locationRepository;
 
     public List<Location> findActiveLocations(Integer cityId) {
-        List<Location> locations = locationRepository.findLocations(cityId, ACTIVE);
+        List<Location> locations = locationRepository.findLocations(cityId, Status.ACTIVE);
         Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }
 
     public List<Location> findActiveLocations() {
-        List<Location> locations = locationRepository.findLocations(ACTIVE);
+        List<Location> locations = locationRepository.findLocations(Status.ACTIVE);
         Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }
 
     public Location findLocation(Integer locationId) {
-//        Optional<Location> optionalLocation = locationRepository.findById(locationId);
-//        Location location = optionalLocation.get();//
-//        return location
-//        - sama on all tehtud ühe reana.
-        return locationRepository.findById(locationId).get();
+        Optional<Location> optionalLocation = locationRepository.findById(locationId);
+        Location location = optionalLocation.get();
+        return location;
     }
 
     public void saveAtmLocation(Location location) {
