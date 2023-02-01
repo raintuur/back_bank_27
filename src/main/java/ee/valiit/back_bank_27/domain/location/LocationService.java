@@ -1,6 +1,10 @@
 package ee.valiit.back_bank_27.domain.location;
 
+import ee.valiit.back_bank_27.domain.location.transaction.LocationTransaction;
+import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionRepository;
+import ee.valiit.back_bank_27.validation.Validator;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +16,15 @@ public class LocationService {
 
     public List<Location> findActiveLocations(Integer cityId) {
         List<Location> locations = locationRepository.findLocations(cityId, "A");
+        Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }
 
     public List<Location> findActiveLocations() {
         List<Location> locations = locationRepository.findLocations("A");
+        Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }
+
+
 }
