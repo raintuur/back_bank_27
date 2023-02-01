@@ -1,6 +1,5 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
@@ -81,7 +80,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -92,8 +91,6 @@ public class AtmService {
         Location location = locationService.findLocation(locationId);
         AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
         return atmLocationInfo;
-
-
     }
 }
 
