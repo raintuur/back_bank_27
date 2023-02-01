@@ -1,6 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
 import ee.valiit.back_bank_27.domain.city.City;
@@ -82,7 +83,11 @@ public class AtmService {
     }
 
 
-
+    public AtmLocationInfo getAtmLocation(Integer locationId) {
+        Location location = locationService.findLocation(locationId);
+        AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
+        return atmLocationInfo;
+    }
 }
 
 
