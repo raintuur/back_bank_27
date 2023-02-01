@@ -9,9 +9,9 @@ import java.util.List;
 public interface LocationTransactionMapper {
 
     @Mapping(source = "transaction.type", target = "typeName")
+    TransactionTypeDto toDto(LocationTransaction locationTransaction);
 
-    TransactionTypeDto toDtos(LocationTransaction locationTransaction);
+    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransactions);
 
-    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransaction);
 
 }
