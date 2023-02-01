@@ -14,4 +14,6 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
     List<Location> findLocations(String status);
 
 
+
+
 }
