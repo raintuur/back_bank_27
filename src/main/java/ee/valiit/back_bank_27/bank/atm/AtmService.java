@@ -45,4 +45,6 @@ public class AtmService {
         return locationDtos;
     }
 }
-// TODO: for loopiga käia läbi kõik locationDtos objektid, igal tsüklil otsime andmebaasist locationId ja available abil need read, mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks ümber. Seejärel lisame need AtmLocationDto välja transactionTypes külge.
+// TODO: for loopiga käia läbi kõik locationDtos objektid, igal tsüklil otsime andmebaasist locationId
+//  ja available abil need read, mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks ümber.
+//  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
