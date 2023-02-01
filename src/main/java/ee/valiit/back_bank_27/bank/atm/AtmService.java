@@ -15,8 +15,10 @@ import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionSer
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
 
 @Service
 public class AtmService {
@@ -69,6 +71,18 @@ public class AtmService {
         }
         return locationDtos;
     }
+
+    public void deleteAtmLocation(Integer locationId) {
+        Location location = locationService.findLocation(locationId);
+        String currentName = location.getName();
+        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
+        location.setName(newName);
+        location.setStatus(DEACTIVATED);
+        locationService.saveAtmLocation(location);
+    }
+
+
+
 }
 
 

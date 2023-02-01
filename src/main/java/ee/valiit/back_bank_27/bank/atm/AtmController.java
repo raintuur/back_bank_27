@@ -9,21 +9,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
+@RequestMapping("/atm")
 public class AtmController {
 
     @Resource
     private AtmService atmService;
 
 
-    @GetMapping("/atm/locations")
+    @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -34,11 +32,18 @@ public class AtmController {
     }
 
 
-    @GetMapping("/atm/cities")
+    @GetMapping("/cities")
     @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
     public List<CityDto> getAllCities() {
         List<CityDto> cities = atmService.getAllCities();
         return cities;
     }
+
+    @DeleteMapping("/location")
+    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
+    public void deleteAtmLocation(@RequestParam Integer locationId) {
+        atmService.deleteAtmLocation(locationId);
+    }
+
 
 }
