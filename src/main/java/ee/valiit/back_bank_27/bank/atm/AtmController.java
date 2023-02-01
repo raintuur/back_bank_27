@@ -1,6 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +19,12 @@ import java.util.List;
 public class AtmController {
     @Resource
     private AtmService atmService;
+
+    @GetMapping("/location")
+    @Operation(summary = "Finds ATM location by locationId.", description = "midagi midagi")
+    public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
+        return atmService.getAtmLocation(locationId);
+    }
 
 
     @GetMapping("/locations")
