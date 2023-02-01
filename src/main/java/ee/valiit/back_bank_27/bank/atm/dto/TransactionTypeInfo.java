@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class TransactionTypeInfo extends TransactionTypeDto {
-
     private Integer typeId;
     private Boolean isSelected;
 }

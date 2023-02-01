@@ -11,7 +11,7 @@ public interface LocationTransactionMapper {
     @Mapping(source = "transaction.type", target = "typeName")
     TransactionTypeDto toDto(LocationTransaction locationTransaction);
 
-    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransaction);
+    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransactions);
 
 
 }

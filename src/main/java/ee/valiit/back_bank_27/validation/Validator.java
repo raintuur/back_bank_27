@@ -19,9 +19,11 @@ public class Validator {
         User user = optionalUser.get();
         return user;
     }
+
     public static void validateAtmLocationsAvailable(List<Location> locations) {
         if (locations.isEmpty()) {
-        throw new DataNotFoundException(NO_ATM_LOCATIONS.getMessage(), NO_ATM_LOCATIONS.getCode());
+            throw new DataNotFoundException(NO_ATM_LOCATIONS.getMessage(), NO_ATM_LOCATIONS.getCode());
         }
     }
+
 }
