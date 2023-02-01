@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -22,6 +23,17 @@ public class AtmController {
     private AtmService atmService;
 
 
+    @GetMapping("/atm/locations")
+    @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Could not find any ATM locations", content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
+        List<AtmLocationDto> atmLocations = atmService.getAtmLocations(cityId);
+        return atmLocations;
+    }
+
+
     @GetMapping("/atm/cities")
     @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
     public List<CityDto> getAllCities() {
@@ -29,12 +41,4 @@ public class AtmController {
         return cities;
     }
 
-    @GetMapping("/atm/locations")
-    @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Available ATM locations not found", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
-        return atmService.getAtmLocations(cityId);
-    }
 }

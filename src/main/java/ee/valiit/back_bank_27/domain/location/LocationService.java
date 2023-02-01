@@ -1,13 +1,11 @@
 package ee.valiit.back_bank_27.domain.location;
 
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransaction;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionRepository;
 import ee.valiit.back_bank_27.validation.Validator;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class LocationService {
@@ -20,11 +18,11 @@ public class LocationService {
         return locations;
     }
 
+
+
     public List<Location> findActiveLocations() {
         List<Location> locations = locationRepository.findLocations("A");
         Validator.validateAtmLocationsAvailable(locations);
         return locations;
     }
-
-
 }
