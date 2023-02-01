@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm;
 
+import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
@@ -15,7 +16,10 @@ import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionSer
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
 
 @Service
 public class AtmService {
@@ -23,10 +27,8 @@ public class AtmService {
     private CityService cityService;
     @Resource
     private CityMapper cityMapper;
-
     @Resource
     private LocationService locationService;
-
     @Resource
     private LocationMapper locationMapper;
     @Resource
@@ -59,7 +61,13 @@ public class AtmService {
         }
         return locationDtos;
     }
+
+    public void deleteAtmLocation(Integer locationId) {
+        Location location = locationService.findLocation(locationId);
+        String currentName = location.getName();
+        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
+        location.setName(newName);
+        location.setStatus(DEACTIVATED);
+        locationService.saveAtmLocation(location);
+    }
 }
-// TODO: for loopiga käia läbi kõik locationDtos objektid, igal tsüklil otsime andmebaasist locationId
-//  ja available abil need read, mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks ümber.
-//  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
