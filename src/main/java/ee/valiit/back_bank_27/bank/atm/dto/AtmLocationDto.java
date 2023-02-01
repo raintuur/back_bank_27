@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * A DTO for the {@link Location} entity
@@ -20,8 +21,11 @@ public class AtmLocationDto implements Serializable {
 
     @Size(max = 255)
     @NotNull
-    private String cityName;
+    private String locationName;
+
     @Size(max = 255)
     @NotNull
-    private String locationName;
+    private String cityName;
+
+    private List<TransactionTypeDto> transactionTypes;
 }
