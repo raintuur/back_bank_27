@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
@@ -52,7 +52,7 @@ public class AtmController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Could not find any ATM locations", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
+    public List<AtmLocationResponse> getAtmLocations(@RequestParam Integer cityId) {
         return atmService.getAtmLocations(cityId);
     }
 

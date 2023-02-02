@@ -17,6 +17,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -54,7 +55,7 @@ public class AtmService {
         return cityDtos;
     }
 
-    public List<AtmLocationDto> getAtmLocations(Integer cityId) {
+    public List<AtmLocationResponse> getAtmLocations(Integer cityId) {
 
         List<Location> locations;
 
@@ -64,14 +65,14 @@ public class AtmService {
             locations = locationService.findActiveLocations(cityId);
         }
 
-        List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
+        List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
 
 //        for-loopiga käia läbi kõik locationDtos objektid.
 //        igal tsüklil otsime andmebaasist locationId ja available abil need read,
 //        mis kuuluvad antud locationi juurde. Tulemused mapime TransactionTypeDto-deks.
 //        Seejärel lisame need AtmLocationDto välja transactionTypes külge.
 
-        for (AtmLocationDto locationDto : locationDtos) {
+        for (AtmLocationResponse locationDto : locationDtos) {
             List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
             List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
             locationDto.setTransactionTypes(transactionTypeDtos);
@@ -112,6 +113,23 @@ public class AtmService {
         City city = cityService.findCity(atmLocationInfo.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
+
+        List<TransactionTypeInfo> transactionTypes = atmLocationInfo.getTransactionTypes();
+
+        List<LocationTransaction> locationTransactions = new ArrayList<>();
+
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            LocationTransaction locationTransaction = new LocationTransaction();
+            locationTransaction.setLocation(location);
+            Transaction transaction = transactionService.findTransaction(transactionType.getTypeId());
+            locationTransaction.setTransaction(transaction);
+            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransactions.add(locationTransaction);
+        }
+
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+
+
     }
 }
 

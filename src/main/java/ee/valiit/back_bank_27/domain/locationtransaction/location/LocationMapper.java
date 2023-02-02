@@ -1,17 +1,18 @@
 package ee.valiit.back_bank_27.domain.locationtransaction.location;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import ee.valiit.back_bank_27.bank.Status;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import org.mapstruct.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", imports = {Status.class})
 public interface LocationMapper {
 
     @Mapping(source = "locationName",target = "name")
-    @Mapping(constant = "A",target = "status")
+    @Mapping(constant = Status.ACTIVE,target = "status")
     @Mapping(source = "picture",target = "picture", qualifiedByName = "stringToByteArray")
     Location toEntity(AtmLocationInfo atmLocationInfo);
 
@@ -26,7 +27,7 @@ public interface LocationMapper {
     @Mapping(source = "id",target = "locationId")
     @Mapping(source = "name",target = "locationName")
     @Mapping(source = "city.name",target = "cityName")
-    AtmLocationDto toDto(Location location);
+    AtmLocationResponse toDto(Location location);
 
     @Mapping(source = "name", target = "locationName")
     @Mapping(source = "city.id", target = "cityId")
@@ -34,7 +35,7 @@ public interface LocationMapper {
     AtmLocationInfo toInfo(Location location);
 
 
-    List<AtmLocationDto> toDtos(List<Location> locations);
+    List<AtmLocationResponse> toDtos(List<Location> locations);
 
 
 

@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AtmLocationDto implements Serializable {
+public class AtmLocationResponse implements Serializable {
     private Integer locationId;
 
     @Size(max = 255)
