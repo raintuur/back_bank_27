@@ -21,6 +21,21 @@ public class AtmController {
 
 
 
+    @GetMapping("/cities")
+    @Operation(summary = "finds all cities in database", description = "Front end uses this information to create cities dropdown")
+    public List<CityDto> getAllCities() {
+        return atmService.getAllCities();
+    }
+
+    @GetMapping("/locations")
+    @Operation(summary = "finds a list of atm locations with transaction data, by cityId", description = "if cityId = 0 returns all ATM locations")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Could not find any ATM locations")})
+    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
+        return atmService.getAtmLocations(cityId);
+    }
+
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "adds ATM location to db tables (location & location_transaction")
     public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo){
@@ -33,27 +48,9 @@ public class AtmController {
         return atmService.getAllTransactionTypes();
     }
 
-    @GetMapping("/cities")
-    @Operation(summary = "finds all cities in database", description = "Front end uses this information to create cities dropdown")
-    public List<CityDto> getAllCities() {
-
-        return atmService.getAllCities();
-    }
-
-    @GetMapping("/locations")
-    @Operation(summary = "finds a list of atm locations with transaction data, by cityId", description = "if cityId = 0 returns all ATM locations")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Could not find any ATM locations")})
-    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
-
-        return atmService.getAtmLocations(cityId);
-    }
-
     @GetMapping("/location")
     @Operation(summary = "find atm location by locationId", description = "??")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
-
         return atmService.getAtmLocation(locationId);
     }
 
