@@ -4,12 +4,12 @@ import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
-import ee.valiit.back_bank_27.domain.location.Location;
-import ee.valiit.back_bank_27.domain.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.location.LocationService;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransaction;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionMapper;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
