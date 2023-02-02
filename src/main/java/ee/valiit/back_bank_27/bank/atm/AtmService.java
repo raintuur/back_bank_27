@@ -56,23 +56,16 @@ public class AtmService {
     }
 
     public List<AtmLocationResponse> getAtmLocations(Integer cityId) {
-
         List<Location> locations;
-
         if (cityId == 0) {
             locations =  locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
-        List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
-
-        for (AtmLocationResponse locationDto : locationDtos) {
-            List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
-            List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
-            locationDto.setTransactionTypes(transactionTypeDtos);
-        }
+        List<AtmLocationResponse> locationDtos = createLocationDtos(locations);
         return locationDtos;
     }
+
 
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
@@ -104,6 +97,17 @@ public class AtmService {
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
+    }
+
+
+    private List<AtmLocationResponse> createLocationDtos(List<Location> locations) {
+        List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
+        for (AtmLocationResponse locationDto : locationDtos) {
+            List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
+            List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
+            locationDto.setTransactionTypes(transactionTypeDtos);
+        }
+        return locationDtos;
     }
 
     private Location createAndSaveLocation(AtmLocationDto locationDto) {
