@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location;
+package ee.valiit.back_bank_27.domain.locationtransaction.location;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
@@ -15,7 +15,7 @@ public interface LocationMapper { ;
     AtmLocationDto toDto(Location location);
 
     @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.Id", target = "cityId")
+    @Mapping(source = "id", target = "cityId")
     @Mapping(ignore = true, target = "picture")
     AtmLocationInfo toInfo(Location location);
 

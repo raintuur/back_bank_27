@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location;
+package ee.valiit.back_bank_27.domain.locationtransaction.location;
 
 import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.validation.Validator;
