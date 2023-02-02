@@ -23,7 +23,7 @@ public interface LocationMapper {
     @Mapping(source = "name",target = "locationName")
     @Mapping(source = "city.id",target = "cityId")
     @Mapping(ignore = true,target = "picture")
-    AtmLocationInfo toInfo(Location location);
+    AtmLocationInfo toInfos(Location location);
 
 
 
