@@ -60,7 +60,7 @@ public class AtmService {
         List<Location> locations;
 
         if (cityId == 0) {
-            locations =  locationService.findActiveLocations();
+            locations = locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
@@ -83,7 +83,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -108,11 +108,24 @@ public class AtmService {
     }
 
     public void addAtmLocation(AtmLocationDto locationDto) {
+        Location location = createAndSaveLocation(locationDto);
+        createAndSaveLocationTransactions(locationDto, location);
+    }
+
+    private Location createAndSaveLocation(AtmLocationDto locationDto) {
+        Location location = createLocation(locationDto);
+        locationService.saveAtmLocation(location);
+        return location;
+    }
+
+    private Location createLocation(AtmLocationDto locationDto) {
         Location location = locationMapper.toEntity(locationDto);
         City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
-        locationService.saveAtmLocation(location);
+        return location;
+    }
 
+    private void createAndSaveLocationTransactions(AtmLocationDto locationDto, Location location) {
         List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
 
         List<LocationTransaction> locationTransactions = new ArrayList<>();
@@ -127,8 +140,6 @@ public class AtmService {
         }
 
         locationTransactionService.saveLocationTransactions(locationTransactions);
-
-
     }
 }
 
