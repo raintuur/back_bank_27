@@ -1,17 +1,25 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
-import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
-import ee.valiit.back_bank_27.domain.location.Location;
-import ee.valiit.back_bank_27.domain.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.location.LocationService;
+import ee.valiit.back_bank_27.bank.atm.dto.*;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
 
 @Service
 public class AtmService {
@@ -21,9 +29,17 @@ public class AtmService {
     @Resource
     private LocationService locationService;
     @Resource
+    private LocationTransactionService locationTransactionService;
+    @Resource
+    private TransactionService transactionService;
+    @Resource
     private CityMapper cityMapper;
     @Resource
     private LocationMapper locationMapper;
+    @Resource
+    private LocationTransactionMapper locationTransactionMapper;
+    @Resource
+    private TransactionMapper transactionMapper;
 
 
     public List<CityDto> getAllCities() {
@@ -44,10 +60,48 @@ public class AtmService {
 
         List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
 
-        // TODO: 1/31/2023  for loopiga käia läbi locationDtos objektid (list),
-        // igal tsüklil kõsime andmebaasist LocationId ja available=true abil need TransactionType'd mis on seal locationis saadaval.
-        //  tulemused mapime locationDto->TransactionTypes listi
+
+
+        for (AtmLocationDto locationDto : locationDtos) {
+            List<LocationTransaction> locationTransactions =
+                    locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
+            List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
+            locationDto.setTransactionTypes(transactionTypeDtos);
+        }
 
         return locationDtos;
+    }
+
+    public void deleteAtmLocation(Integer locationId) {
+        Location location = locationService.findLocation(locationId);
+        location.setStatus(DEACTIVATED);
+        String newName = location.getName() + " (Deactivated: " + LocalDateTime.now() + ")";
+        location.setName(newName);
+
+        locationService.saveAtmLocation(location);
+    }
+
+    public AtmLocationInfo getAtmLocation(Integer locationId) {
+        Location location = locationService.findLocation(locationId);
+        AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
+        List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId);
+        List<TransactionTypeInfo> transactionTypeInfos = locationTransactionMapper.toInfos(locationTransactions);
+        atmLocationInfo.setTransactionTypes(transactionTypeInfos);
+        return atmLocationInfo;
+    }
+
+    public List<TransactionTypeInfo> getAllTransactionTypes() {
+        List<Transaction> transactions = transactionService.findAllTransactions();
+        return transactionMapper.toInfos(transactions);
+    }
+
+    public void addAtmLocation(AtmLocationInfo atmLocationInfo) {
+        Location location = locationMapper.toEntity(atmLocationInfo);
+        City city = cityService.findCity(atmLocationInfo.getCityId());
+        location.setCity(city);
+        locationService.saveAtmLocation(location);
+
+        System.out.println();
+
     }
 }

@@ -1,0 +1,24 @@
+package ee.valiit.back_bank_27.domain.locationtransaction;
+
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
+import org.mapstruct.*;
+
+import java.util.List;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+public interface LocationTransactionMapper {
+
+
+    @Mapping(source = "transaction.type", target = "typeName")
+    TransactionTypeDto toDto(LocationTransaction locationTransaction);
+    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransactions);
+
+    @Mapping(source="transaction.type", target= "typeName")
+    @Mapping(source="available", target= "isSelected")
+    @Mapping(source="id", target= "typeId")
+    TransactionTypeInfo toInfo(LocationTransaction locationTransaction);
+
+    List<TransactionTypeInfo> toInfos(List<LocationTransaction> locationTransactions);
+
+}
