@@ -64,14 +64,8 @@ public class AtmService {
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
-
         List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
 
-        // TODO: for-loopiga käia läbi  kõik locationDtos objektid
-        //  igal tsüklil otsime andmebaasist locationId ja isAvailable abil, need read,
-        //  mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks.
-        //  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
-        //
         for (AtmLocationResponse locationDto : locationDtos) {
             List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
             List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
@@ -108,27 +102,45 @@ public class AtmService {
     }
 
     public void addAtmLocation(AtmLocationDto locationDto) {
+        Location location = createAndSaveLocation(locationDto);
+        createAndSaveLocationTransactions(locationDto, location);
+    }
+
+    private Location createAndSaveLocation(AtmLocationDto locationDto) {
+        Location location = createLocation(locationDto);
+        locationService.saveAtmLocation(location);
+        return location;
+    }
+
+    private Location createLocation(AtmLocationDto locationDto) {
         Location location = locationMapper.toEntity(locationDto);
         City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
-        locationService.saveAtmLocation(location);
+        return location;
+    }
 
+    private void createAndSaveLocationTransactions(AtmLocationDto locationDto, Location location) {
         List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
+        List<LocationTransaction> locationTransactions = createLocationTransactions(location, typesDto);
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+    }
 
+    private List<LocationTransaction> createLocationTransactions(Location location, List<TransactionTypeInfo> typesDto) {
         List<LocationTransaction> locationTransactions = new ArrayList<>();
-
         for (TransactionTypeInfo typeDto : typesDto) {
-            LocationTransaction locationTransaction = new LocationTransaction();
-            locationTransaction.setLocation(location);
-            Transaction transaction = transactionService.findTransaction(typeDto.getTypeId());
-            locationTransaction.setTransaction(transaction);
-            locationTransaction.setAvailable(typeDto.getIsSelected());
+            LocationTransaction locationTransaction = createLocationTransaction(location, typeDto);
             locationTransactions.add(locationTransaction);
         }
+        return locationTransactions;
+    }
 
-        locationTransactionService.saveLocationTransactions(locationTransactions);
-
-
+    private LocationTransaction createLocationTransaction(Location location, TransactionTypeInfo typeDto) {
+        LocationTransaction locationTransaction = new LocationTransaction();
+        locationTransaction.setLocation(location);
+        Transaction transaction = transactionService.findTransaction(typeDto.getTypeId());
+        locationTransaction.setTransaction(transaction);
+        locationTransaction.setAvailable(typeDto.getIsSelected());
+        return locationTransaction;
     }
 }
 
