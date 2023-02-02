@@ -4,12 +4,12 @@ import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
@@ -107,12 +107,13 @@ public class AtmService {
         return transactionTypeInfos;
     }
 
-    public void addAtmLocation(AtmLocationDto atmLocationDto) {
-        Location location = locationMapper.toEntity(atmLocationDto);
-        City city = cityService.findCity(atmLocationDto.getCityId());
+    public void addAtmLocation(AtmLocationDto locationDto) {
+        Location location = locationMapper.toEntity(locationDto);
+        City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
-        List<TransactionTypeInfo> typesDto = atmLocationDto.getTransactionTypes();
+
+        List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
 
         List<LocationTransaction> locationTransactions = new ArrayList<>();
 
@@ -124,6 +125,7 @@ public class AtmService {
             locationTransaction.setAvailable(typeDto.getIsSelected());
             locationTransactions.add(locationTransaction);
         }
+
         locationTransactionService.saveLocationTransactions(locationTransactions);
 
 

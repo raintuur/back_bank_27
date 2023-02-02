@@ -8,6 +8,7 @@ import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.ACTIVE;
 
+
 @Service
 public class LocationService {
     @Resource
@@ -19,17 +20,23 @@ public class LocationService {
         return locations;
     }
 
+
+
     public List<Location> findActiveLocations() {
         List<Location> locations = locationRepository.findLocations(ACTIVE);
         Validator.validateAtmLocationsAvailable(locations);
         return locations;
-
     }
 
-    public Location findLocation(Integer locationId) {
-//        pikk versioon millest tuleb return
+    // Pikalt lahti kirjutatud lahendus
+//    public Location findLocation(Integer locationId) {
 //        Optional<Location> optionalLocation = locationRepository.findById(locationId);
 //        Location location = optionalLocation.get();
+//        return location;
+//    }
+
+    // One-liner lahendus
+    public Location findLocation(Integer locationId) {
         return locationRepository.findById(locationId).get();
     }
 

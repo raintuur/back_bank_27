@@ -7,8 +7,10 @@ import java.util.List;
 
 @Service
 public class TransactionService {
+
     @Resource
     private TransactionRepository transactionRepository;
+
 
     public List<Transaction> findAllTransactions() {
         List<Transaction> transactions = transactionRepository.findAll();

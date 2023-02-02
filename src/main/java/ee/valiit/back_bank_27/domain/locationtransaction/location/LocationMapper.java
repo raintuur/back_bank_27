@@ -22,19 +22,20 @@ public interface LocationMapper {
         return bytes;
     }
 
-
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
     AtmLocationResponse toDto(Location location);
 
-
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.id", target = "cityId")
-    @Mapping(ignore = true, target = "picture")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.id",target = "cityId")
+    @Mapping(ignore = true,target = "picture")
     AtmLocationDto toInfo(Location location);
 
 
+
     List<AtmLocationResponse> toDtos(List<Location> locations);
+
+
 
 }

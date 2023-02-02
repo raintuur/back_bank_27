@@ -12,7 +12,4 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
     @Query("select l from Location l where l.status = ?1 order by l.city.name, l.name")
     List<Location> findLocations(String status);
 
-
-
-
 }

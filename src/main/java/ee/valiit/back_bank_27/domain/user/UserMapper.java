@@ -12,5 +12,4 @@ public interface UserMapper {
     @Mapping(source = "role.type", target = "roleType")
     LoginResponse toDto(User user);
 
-
 }

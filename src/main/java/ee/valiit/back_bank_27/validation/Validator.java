@@ -11,8 +11,9 @@ import static ee.valiit.back_bank_27.validation.ErrorMessage.INCORRECT_CREDENTIA
 import static ee.valiit.back_bank_27.validation.ErrorMessage.NO_ATM_LOCATIONS;
 
 public class Validator {
+
     public static User getValidUser(Optional<User> optionalUser) {
-        if(optionalUser.isEmpty()) {
+        if (optionalUser.isEmpty()) {
             throw new DataNotFoundException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getCode());
         }
         User user = optionalUser.get();
@@ -21,8 +22,8 @@ public class Validator {
 
     public static void validateAtmLocationsAvailable(List<Location> locations) {
         if (locations.isEmpty()) {
-            throw new DataNotFoundException((NO_ATM_LOCATIONS.getMessage()), NO_ATM_LOCATIONS.getCode());
-
+            throw new DataNotFoundException(NO_ATM_LOCATIONS.getMessage(), NO_ATM_LOCATIONS.getCode());
         }
     }
+
 }

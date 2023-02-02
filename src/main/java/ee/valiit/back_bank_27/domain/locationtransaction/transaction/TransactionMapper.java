@@ -12,6 +12,8 @@ public interface TransactionMapper {
     @Mapping(source = "type", target = "typeName")
     @Mapping(constant = "false", target = "isSelected")
     TransactionTypeInfo toInfo(Transaction transaction);
+
     List<TransactionTypeInfo> toInfos(List<Transaction> transactions);
+
 
 }

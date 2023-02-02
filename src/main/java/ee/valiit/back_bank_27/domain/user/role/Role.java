@@ -21,4 +21,5 @@ public class Role {
     @NotNull
     @Column(name = "type", nullable = false, length = 50)
     private String type;
+
 }
