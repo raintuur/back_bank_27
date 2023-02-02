@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.validation;
 
-import ee.valiit.back_bank_27.domain.location.Location;
+import ee.valiit.back_bank_27.domain.location.locationtransaction.location.Location;
 import ee.valiit.back_bank_27.domain.user.User;
 import ee.valiit.back_bank_27.infrastructure.exception.DataNotFoundException;
 

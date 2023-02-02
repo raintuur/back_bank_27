@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location.transaction;
+package ee.valiit.back_bank_27.domain.location.locationtransaction;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,7 @@ public class LocationTransactionService {
     }
 
 
-    public List<LocationTransaction> findLocationTransactions(Integer locationId) {
-        return locationTransactionRepository.findLocationTransactions(locationId);
+    public void saveLocationTransactions(List<LocationTransaction> locationTransactions) {
+        locationTransactionRepository.saveAll(locationTransactions);
     }
-
 }

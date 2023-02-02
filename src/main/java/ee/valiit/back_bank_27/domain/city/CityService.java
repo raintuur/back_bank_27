@@ -16,4 +16,11 @@ public class CityService {
         List<City> cities = cityRepository.findAll();
         return cities;
     }
+
+    public City findCity(Integer cityId) {
+
+        City city = cityRepository.findById(cityId).get();
+
+        return city;
+    }
 }

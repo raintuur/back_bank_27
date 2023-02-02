@@ -1,7 +1,7 @@
-package ee.valiit.back_bank_27.domain.location.transaction;
+package ee.valiit.back_bank_27.domain.location.locationtransaction;
 
-import ee.valiit.back_bank_27.domain.location.Location;
-import ee.valiit.back_bank_27.domain.location.transaction.Transaction;
+import ee.valiit.back_bank_27.domain.location.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.location.locationtransaction.transaction.Transaction;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name = "location_transaction")
 public class LocationTransaction {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -23,7 +24,7 @@ public class LocationTransaction {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "transactions_id", nullable = false)
+    @JoinColumn(name = "transaction_id", nullable = false)
     private Transaction transaction;
 
     @NotNull

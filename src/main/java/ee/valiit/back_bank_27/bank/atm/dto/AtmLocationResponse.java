@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm.dto;
 
-import ee.valiit.back_bank_27.domain.location.Location;
+import ee.valiit.back_bank_27.domain.location.locationtransaction.location.Location;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AtmLocationDto implements Serializable {
+public class AtmLocationResponse implements Serializable {
     private Integer locationId;
 
     @Size(max = 255)

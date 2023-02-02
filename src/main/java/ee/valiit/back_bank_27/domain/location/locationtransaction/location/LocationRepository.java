@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location;
+package ee.valiit.back_bank_27.domain.location.locationtransaction.location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

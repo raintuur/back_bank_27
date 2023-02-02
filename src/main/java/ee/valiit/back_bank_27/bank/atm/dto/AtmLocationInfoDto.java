@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AtmLocationInfo {
+public class AtmLocationInfoDto {
     private Integer cityId;
     private String locationName;
     private Integer numberOfAtms;
