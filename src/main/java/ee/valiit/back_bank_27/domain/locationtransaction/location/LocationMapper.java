@@ -4,7 +4,10 @@ import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.util.PictureUtil;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -32,7 +35,6 @@ public interface LocationMapper {
     @Mapping(source = "city.id", target = "cityId")
     @Mapping(expression = "java(PictureUtil.byteArrayToString(location.getPicture()))", target = "picture")
     AtmLocationDto toInfo(Location location);
-
 
     List<AtmLocationResponse> toDtos(List<Location> locations);
 
