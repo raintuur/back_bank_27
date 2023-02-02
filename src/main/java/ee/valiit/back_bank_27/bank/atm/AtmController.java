@@ -3,6 +3,7 @@ package ee.valiit.back_bank_27.bank.atm;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,12 +23,24 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+    @PostMapping("/location")
+    @Operation(summary = "Add ATM location", description = "Adds ATM locationto db tables 'location' and 'location_transaction'" )
+    public AtmLocationInfo addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
+       atmService.addAtmLocation(atmLocationInfo);
+        return atmLocationInfo;
+    }
+
     @GetMapping("/location")
     @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from db table 'location_transaction'")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
     }
 
+    @DeleteMapping("/location")
+    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
+    public void deleteAtmLocation(@RequestParam Integer locationId) {
+        atmService.deleteAtmLocation(locationId);
+    }
 
     @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
@@ -47,16 +60,12 @@ public class AtmController {
         return cities;
     }
 
-    @DeleteMapping("/location")
-    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
-    public void deleteAtmLocation(@RequestParam Integer locationId) {
-        atmService.deleteAtmLocation(locationId);
-    }
+
 
     @GetMapping("/transaction-types")
     @Operation(summary = "Finds all transation types", description = "Finds all transaction types from db table 'transaction'")
-    public List<Transaction> getAllTransactionTypes() {
-        List<Transaction> transactions = atmService.getAllTransactionTypes();
+    public List<TransactionTypeInfo> getAllTransactionTypes() {
+        List<TransactionTypeInfo> transactions = atmService.getAllTransactionTypes();
         return transactions;
     }
 
