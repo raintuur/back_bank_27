@@ -11,6 +11,7 @@ import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -95,7 +96,7 @@ public class AtmService {
         return atmLocationInfo;
     }
 
-    public void getAllTransactionTypes() {
+    public List<Transaction> getAllTransactionTypes() {
         List<Transaction> transactions = transactionService.findAllTransactions();
         return transactions;
     }
