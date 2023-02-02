@@ -11,7 +11,7 @@ import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
-import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionRepository;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +31,9 @@ public class AtmService {
 
     @Resource
     private LocationTransactionService locationTransactionService;
+
     @Resource
-    private TransactionTypes transactionTypes;
+    private TransactionService transactionService;
 
     @Resource
     private CityMapper cityMapper;
@@ -42,11 +43,6 @@ public class AtmService {
 
     @Resource
     private LocationTransactionMapper locationTransactionMapper;
-    private final TransactionRepository transactionRepository;
-
-    public AtmService(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
 
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
@@ -100,9 +96,9 @@ public class AtmService {
         return atmLocationInfo;
     }
 
-    public void getAllTransactionTypes() {
-        List<Transaction> transactions = transactionRepository.findAll();
-
+    public List<Transaction> getAllTransactionTypes() {
+        List<Transaction> transactions = transactionService.findAllTransactions();
+        return transactions;
     }
 }
 
