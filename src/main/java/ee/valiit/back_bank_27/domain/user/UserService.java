@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.domain.user;
 
+import ee.valiit.back_bank_27.bank.login.LoginService;
 import ee.valiit.back_bank_27.infrastructure.exception.DataNotFoundException;
 import ee.valiit.back_bank_27.validation.Validator;
 import jakarta.annotation.Resource;

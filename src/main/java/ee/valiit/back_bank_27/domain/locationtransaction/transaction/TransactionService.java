@@ -14,4 +14,9 @@ public class TransactionService {
         List<Transaction> transactions = transactionRepository.findAll();
         return transactions;
     }
+
+    public Transaction findTransaction(Integer typeId) {
+        Transaction transaction = transactionRepository.findById(typeId).get();
+        return transaction;
+    }
 }

@@ -1,9 +1,7 @@
 package ee.valiit.back_bank_27.domain.city;
 
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -14,6 +12,7 @@ public interface CityMapper {
     @Mapping(source = "name", target = "cityName")
     CityDto toDto(City city);
 
-    List<CityDto> toDtos(List<City> city);
+    List<CityDto> toDtos(List<City> cities);
+
 
 }

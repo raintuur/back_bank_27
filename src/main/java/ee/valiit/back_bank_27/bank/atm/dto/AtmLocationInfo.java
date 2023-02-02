@@ -13,5 +13,4 @@ public class AtmLocationInfo {
 
     private List<TransactionTypeInfo> transactionTypes;
 
-
 }
