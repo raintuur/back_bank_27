@@ -14,6 +14,8 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "location")
 public class Location {
+
+
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;

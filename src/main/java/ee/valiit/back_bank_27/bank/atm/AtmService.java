@@ -105,6 +105,14 @@ public class AtmService {
         List<TransactionTypeInfo> transactionTypeInfos = transactionMapper.toInfos(transactions);
         return transactionTypeInfos;
     }
+
+    public void addAtmLocation(AtmLocationInfo atmLocationInfo) {
+        Location location = locationMapper.toEntity(atmLocationInfo);
+        City city = cityService.findCityId(atmLocationInfo.getCityId());
+        location.setCity(city);
+        locationService.saveAtmLocation(location);
+
+    }
 }
 
 

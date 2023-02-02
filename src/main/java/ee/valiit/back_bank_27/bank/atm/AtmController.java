@@ -22,6 +22,11 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+    @PostMapping("/location")
+    @Operation(summary = "Add ATM location by locationId", description = "Adds ATM locations to db tables 'location_transaction' and 'location'")
+    public void AtmLocationInfo addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
+        atmService.addAtmLocation(atmLocationInfo);
+    }
     @GetMapping("/location")
     @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from db table 'location_transaction'")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
