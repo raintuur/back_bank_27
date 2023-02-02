@@ -13,9 +13,7 @@ import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationServic
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
-
 import jakarta.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -32,6 +30,7 @@ public class AtmService {
 
     @Resource
     private LocationService locationService;
+
 
     @Resource
     private LocationTransactionService locationTransactionService;
@@ -66,7 +65,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -97,7 +96,7 @@ public class AtmService {
     private List<Location> findLocations(Integer cityId) {
         List<Location> locations;
         if (cityId == 0) {
-            locations = locationService.findActiveLocations();
+            locations =  locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
@@ -151,24 +150,3 @@ public class AtmService {
         return locationTransaction;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
