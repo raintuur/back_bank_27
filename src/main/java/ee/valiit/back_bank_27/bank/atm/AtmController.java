@@ -3,6 +3,7 @@ package ee.valiit.back_bank_27.bank.atm;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,7 +23,7 @@ public class AtmController {
     private AtmService atmService;
 
     @GetMapping ("/location")
-    @Operation(summary = "Finds ATM location by ID")
+    @Operation(summary = "Finds ATM location by ID", description = "Finds all transaction types from db table 'location_transaction")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
 
@@ -50,6 +51,14 @@ public class AtmController {
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
 
+    }
+
+
+    @GetMapping("/transaction-types")
+    @Operation(summary = "Finds all transaction types", description = "Finds all transaction types from db table 'transaction")
+    public List<TransactionTypeInfo> getAllTransactionTypes() {
+        List<TransactionTypeInfo> transactions = atmService.getAllTransactionTypes();
+        return transactions;
     }
 
 
