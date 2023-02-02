@@ -22,7 +22,6 @@ public class LocationTransactionService {
     }
 
     public void saveLocationTransactions(List<LocationTransaction> locationTransactions) {
-
         locationTransactionRepository.saveAll(locationTransactions);
     }
 }

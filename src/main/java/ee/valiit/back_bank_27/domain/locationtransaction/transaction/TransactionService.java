@@ -20,6 +20,5 @@ public class TransactionService {
     public Transaction findTransaction(Integer typeId) {
         Transaction transaction = transactionRepository.findById(typeId).get();
         return transaction;
-
     }
 }

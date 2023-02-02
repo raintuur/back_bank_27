@@ -4,12 +4,12 @@ import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
@@ -55,7 +55,7 @@ public class AtmService {
         return cityDtos;
     }
 
-    public List<AtmLocationDto> getAtmLocations(Integer cityId) {
+    public List<AtmLocationResponse> getAtmLocations(Integer cityId) {
 
         List<Location> locations;
 
@@ -65,14 +65,14 @@ public class AtmService {
             locations = locationService.findActiveLocations(cityId);
         }
 
-        List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
+        List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
 
         // TODO: for-loopiga käia läbi  kõik locationDtos objektid
         //  igal tsüklil otsime andmebaasist locationId ja isAvailable abil, need read,
         //  mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks.
         //  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
         //
-        for (AtmLocationDto locationDto : locationDtos) {
+        for (AtmLocationResponse locationDto : locationDtos) {
             List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
             List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
             locationDto.setTransactionTypes(transactionTypeDtos);
@@ -90,15 +90,15 @@ public class AtmService {
     }
 
 
-    public AtmLocationInfoDto getAtmLocation(Integer locationId) {
+    public AtmLocationDto getAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
-        AtmLocationInfoDto atmLocationInfoDto = locationMapper.toInfo(location);
+        AtmLocationDto atmLocationDto = locationMapper.toInfo(location);
 
         List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId);
 
         List<TransactionTypeInfo> transactionTypeInfos = locationTransactionMapper.toInfos(locationTransactions);
-        atmLocationInfoDto.setTransactionTypes(transactionTypeInfos);
-        return atmLocationInfoDto;
+        atmLocationDto.setTransactionTypes(transactionTypeInfos);
+        return atmLocationDto;
     }
 
     public List<TransactionTypeInfo> getAllTransactionTypes() {
@@ -107,26 +107,27 @@ public class AtmService {
         return transactionTypeInfos;
     }
 
-    public void addAtmLocation(AtmLocationInfoDto atmLocationInfoDto) {
-        Location location = locationMapper.toEntity(atmLocationInfoDto);
-        City city = cityService.findCity(atmLocationInfoDto.getCityId());
+    public void addAtmLocation(AtmLocationDto locationDto) {
+        Location location = locationMapper.toEntity(locationDto);
+        City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
 
-        List<TransactionTypeInfo> transactionTypes = atmLocationInfoDto.getTransactionTypes();
+        List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
 
         List<LocationTransaction> locationTransactions = new ArrayList<>();
 
-        for (TransactionTypeInfo transactionType : transactionTypes) {
+        for (TransactionTypeInfo typeDto : typesDto) {
             LocationTransaction locationTransaction = new LocationTransaction();
             locationTransaction.setLocation(location);
-            Transaction transaction = transactionService.findTransaction(transactionType.getTypeId());
+            Transaction transaction = transactionService.findTransaction(typeDto.getTypeId());
             locationTransaction.setTransaction(transaction);
-            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransaction.setAvailable(typeDto.getIsSelected());
             locationTransactions.add(locationTransaction);
-
         }
-locationTransactionService.saveLocationTransactions(locationTransactions);
+
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+
 
     }
 }
