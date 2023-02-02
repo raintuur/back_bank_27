@@ -1,7 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
