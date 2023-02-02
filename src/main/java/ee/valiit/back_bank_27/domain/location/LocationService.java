@@ -1,13 +1,11 @@
 package ee.valiit.back_bank_27.domain.location;
 
 import ee.valiit.back_bank_27.bank.Status;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionRepository;
 import ee.valiit.back_bank_27.validation.Validator;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static ee.valiit.back_bank_27.bank.Status.ACTIVE;
 
@@ -16,11 +14,6 @@ import static ee.valiit.back_bank_27.bank.Status.ACTIVE;
 public class LocationService {
     @Resource
     private LocationRepository locationRepository;
-    private final LocationTransactionRepository locationTransactionRepository;
-
-    public LocationService(LocationTransactionRepository locationTransactionRepository) {
-        this.locationTransactionRepository = locationTransactionRepository;
-    }
 
     public List<Location> findActiveLocations(Integer cityId) {
         List<Location> locations = locationRepository.findLocations(cityId, ACTIVE);
@@ -36,11 +29,20 @@ public class LocationService {
         return locations;
     }
 
+    // Pikalt lahti kirjutatud lahendus
+//    public Location findLocation(Integer locationId) {
+//        Optional<Location> optionalLocation = locationRepository.findById(locationId);
+//        Location location = optionalLocation.get();
+//        return location;
+//    }
+
+    // One-liner lahendus
     public Location findLocation(Integer locationId) {
         return locationRepository.findById(locationId).get();
     }
 
     public void saveAtmLocation(Location location) {
         locationRepository.save(location);
+        Integer id = location.getId();
     }
 }

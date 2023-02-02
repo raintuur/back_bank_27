@@ -15,10 +15,11 @@ public interface LocationMapper {
     @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
 
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.id", target = "cityId")
-    @Mapping(ignore = true, target = "picture")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.id",target = "cityId")
+    @Mapping(ignore = true,target = "picture")
     AtmLocationInfo toInfo(Location location);
+
 
 
     List<AtmLocationDto> toDtos(List<Location> locations);

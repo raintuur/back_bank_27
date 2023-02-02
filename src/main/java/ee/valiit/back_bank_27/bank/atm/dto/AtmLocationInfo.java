@@ -6,11 +6,11 @@ import java.util.List;
 
 @Data
 public class AtmLocationInfo {
-
     private Integer cityId;
     private String locationName;
     private Integer numberOfAtms;
     private String picture;
 
     private List<TransactionTypeInfo> transactionTypes;
+
 }
