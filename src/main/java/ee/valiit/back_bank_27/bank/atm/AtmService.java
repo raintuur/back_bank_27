@@ -83,6 +83,8 @@ public class AtmService {
         AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
         List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId, true);
 
+
+
         List<TransactionTypeInfo> transactionTypeInfos = locationTransactionMapper.toInfos(locationTransactions);
 
         atmLocationInfo.setTransactionTypes(transactionTypeInfos);
