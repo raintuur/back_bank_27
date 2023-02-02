@@ -17,4 +17,8 @@ public class LocationTransactionService {
     public List<LocationTransaction> findLocationTransactions(Integer locationId) {
         return locationTransactionRepository.findLocationTransactions(locationId);
     }
+
+    public void saveLocationTansactions(List<LocationTransaction> locationTransactions) {
+        locationTransactionRepository.saveAll(locationTransactions);
+    }
 }
