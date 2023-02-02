@@ -19,7 +19,7 @@ CREATE TABLE location (
                           status char(1)  NOT NULL,
                           longitude decimal(6,2)  NULL,
                           latitude decimal(6,2)  NULL,
-                          CONSTRAINT location_ak_1 UNIQUE () NOT DEFERRABLE  INITIALLY IMMEDIATE,
+                          CONSTRAINT location_ak_1 UNIQUE (name) NOT DEFERRABLE  INITIALLY IMMEDIATE,
                           CONSTRAINT location_pk PRIMARY KEY (id)
 );
 
