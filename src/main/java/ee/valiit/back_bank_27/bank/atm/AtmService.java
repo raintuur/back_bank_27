@@ -31,6 +31,7 @@ public class AtmService {
     @Resource
     private LocationService locationService;
 
+
     @Resource
     private LocationTransactionService locationTransactionService;
 
@@ -100,6 +101,15 @@ public class AtmService {
         createAndSaveLocationTransactions(locationDto, location);
     }
 
+    private List<Location> findLocations(Integer cityId) {
+        List<Location> locations;
+        if (cityId == 0) {
+            locations =  locationService.findActiveLocations();
+        } else {
+            locations = locationService.findActiveLocations(cityId);
+        }
+        return locations;
+    }
 
     private List<AtmLocationResponse> createAtmLocations(List<Location> locations) {
         List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
@@ -148,24 +158,3 @@ public class AtmService {
         return locationTransaction;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
