@@ -109,10 +109,15 @@ public class AtmService {
 
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
-
         createAndSaveLocationTransactions(locationDto, location);
+    }
 
-
+    private Location createAndSaveLocation(AtmLocationDto locationDto) {
+        Location location = locationMapper.toEntity(locationDto);
+        City city = cityService.findCity(locationDto.getCityId());
+        location.setCity(city);
+        locationService.saveAtmLocation(location);
+        return location;
     }
 
     private void createAndSaveLocationTransactions(AtmLocationDto locationDto, Location location) {
@@ -130,14 +135,6 @@ public class AtmService {
         }
 
         locationTransactionService.saveLocationTransactions(locationTransactions);
-    }
-
-    private Location createAndSaveLocation (AtmLocationDto locationDto) {
-        Location location = locationMapper.toEntity(locationDto);
-        City city = cityService.findCity(locationDto.getCityId());
-        location.setCity(city);
-        locationService.saveAtmLocation(location);
-        return location;
     }
 }
 
