@@ -108,7 +108,7 @@ public class AtmService {
 
     public void addAtmLocation(AtmLocationInfo atmLocationInfo) {
         Location location = locationMapper.toEntity(atmLocationInfo);
-        City city = cityService.findCityId(atmLocationInfo.getCityId());
+        City city = cityService.findCity(atmLocationInfo.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
 

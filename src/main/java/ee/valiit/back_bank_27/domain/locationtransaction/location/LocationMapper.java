@@ -12,30 +12,30 @@ public interface LocationMapper {
 
     @Mapping(source = "locationName", target = "name")
     @Mapping(source = "numberOfAtms", target = "numberOfAtms")
-
+    @Mapping(constant = "A", target = "status")
     @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
     Location toEntity(AtmLocationInfo atmLocationInfo);
 
-    @Mapping(constant = "A", target = "status")
-
     @Named("stringToByteArray")
     static byte[] stringToByteArray(String picture) {
-        picture.getBytes(StandardCharsets.UTF_8);
+        byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
 
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
 
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.id", target = "cityId")
-    @Mapping(ignore = true, target = "picture")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.id",target = "cityId")
+    @Mapping(ignore = true,target = "picture")
     AtmLocationInfo toInfo(Location location);
+
 
 
     List<AtmLocationDto> toDtos(List<Location> locations);
 
-}
 
+
+}
