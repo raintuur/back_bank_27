@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityService {
@@ -15,5 +16,10 @@ public class CityService {
     public List<City> getAllCities() {
         List<City> cities = cityRepository.findAll();
         return cities;
+    }
+
+    public City findCity(Integer cityId) {
+        City city = cityRepository.findById(cityId).get();
+        return city;
     }
 }
