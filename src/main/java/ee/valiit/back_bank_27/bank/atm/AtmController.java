@@ -22,7 +22,7 @@ public class AtmController {
     private AtmService atmService;
 
     @GetMapping("/location")
-    @Operation(summary = "Finds ATM location by locationId", description = "???")
+    @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from db table 'location_transaction'")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
     }
@@ -50,6 +50,13 @@ public class AtmController {
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
+    }
+
+    @GetMapping("/transaction-types")
+    @Operation(summary = "Finds all transaction types", description = "Finds all transaction types from db table 'transaction'");
+    public void getAllTransactionTypes() {
+        atmService.getAllTransactionTypes();
+
     }
 
 
