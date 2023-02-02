@@ -12,11 +12,8 @@ public interface LocationMapper {
 
     @Mapping(source = "locationName", target = "name")
     @Mapping(source = "numberOfAtms", target = "numberOfAtms")
-
-    @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
-
     @Mapping(constant = "A", target = "status")
-
+    @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
     Location toEntity(AtmLocationInfo atmLocationInfo);
 
     @Named("stringToByteArray")
@@ -24,7 +21,6 @@ public interface LocationMapper {
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
-
 
     @Mapping(source = "id",target = "locationId")
     @Mapping(source = "name",target = "locationName")

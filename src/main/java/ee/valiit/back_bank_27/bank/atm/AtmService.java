@@ -48,7 +48,6 @@ public class AtmService {
     @Resource
     private TransactionMapper transactionMapper;
 
-
     public List<CityDto> getAllCities() {
         List<City> cities = cityService.getAllCities();
         List<CityDto> cityDtos = cityMapper.toDtos(cities);
@@ -104,7 +103,6 @@ public class AtmService {
     public List<TransactionTypeInfo> getAllTransactionTypes() {
         List<Transaction> transactions = transactionService.findAllTransactions();
         List<TransactionTypeInfo> transactionTypeInfos = transactionMapper.toInfos(transactions);
-
         return transactionTypeInfos;
     }
 
@@ -113,6 +111,7 @@ public class AtmService {
         City city = cityService.findCity(atmLocationInfo.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
+
     }
 }
 
