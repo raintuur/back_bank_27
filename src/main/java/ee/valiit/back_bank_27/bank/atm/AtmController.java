@@ -22,7 +22,7 @@ public class AtmController {
     private AtmService atmService;
 
     @GetMapping ("/location")
-    @Operation(summary = "Finds ATM location by ID", description = "???")
+    @Operation(summary = "Finds ATM location by ID")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
 
@@ -45,7 +45,7 @@ public class AtmController {
         return cities;
     }
 
-    @DeleteMapping("/locations")
+    @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
