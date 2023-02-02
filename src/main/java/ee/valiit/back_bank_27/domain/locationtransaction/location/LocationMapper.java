@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface LocationMapper {
 
+    @Mapping(ignore = true, target = "id")
     @Mapping(source = "locationName", target = "name")
     @Mapping(source = "numberOfAtms", target = "numberOfAtms")
     @Mapping(constant = "A", target = "status")
