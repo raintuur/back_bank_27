@@ -10,7 +10,7 @@ public interface LocationTransactionRepository extends JpaRepository<LocationTra
     List<LocationTransaction> findLocationTransactions(Integer locationId, Boolean isAvailable);
 
     @Query("select l from LocationTransaction l where l.location.id = ?1 order by l.transaction.id")
-    List<LocationTransaction>findLocationTransactions(Integer locationId);
+    List<LocationTransaction> findLocationTransactions(Integer locationId);
 
 
 

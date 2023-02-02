@@ -14,12 +14,11 @@ public interface LocationTransactionMapper {
 
     List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransactions);
 
-    @Mapping(source = "transaction.type", target ="typeName")
-    @Mapping(source = "transaction.id", target ="typeId")
-    @Mapping(source = "available", target ="isSelected")
-   TransactionTypeInfo toInfo(LocationTransaction locationTransaction);
+    @Mapping(source = "transaction.type", target = "typeName")
+    @Mapping(source = "transaction.id",target = "typeId")
+    @Mapping(source = "available",target = "isSelected")
+    TransactionTypeInfo toInfo(LocationTransaction locationTransaction);
 
     List<TransactionTypeInfo> toInfos(List<LocationTransaction> locationTransactions);
-
 
 }
