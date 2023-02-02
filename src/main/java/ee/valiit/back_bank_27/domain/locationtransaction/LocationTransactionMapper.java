@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location.transaction;
+package ee.valiit.back_bank_27.domain.locationtransaction;
 
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;

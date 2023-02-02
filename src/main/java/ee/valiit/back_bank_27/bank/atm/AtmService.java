@@ -1,23 +1,19 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
-import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
-import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeDto;
+import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
-import ee.valiit.back_bank_27.domain.location.Location;
-import ee.valiit.back_bank_27.domain.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.location.LocationService;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransaction;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionMapper;
-import ee.valiit.back_bank_27.domain.location.transaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -54,7 +50,7 @@ public class AtmService {
         List<Location> locations;
 
         if (cityId == 0) {
-            locations =  locationService.findActiveLocations();
+            locations = locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
@@ -77,7 +73,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -87,8 +83,11 @@ public class AtmService {
     public AtmLocationInfo getAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
-        List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId, true);
 
+        List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId);
+
+        List<TransactionTypeInfo> transactionTypeInfos = locationTransactionMapper.toInfos(locationTransactions);
+        atmLocationInfo.setTransactionTypes(transactionTypeInfos);
         return atmLocationInfo;
     }
 }
