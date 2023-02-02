@@ -1,4 +1,4 @@
-package ee.valiit.back_bank_27.domain.location;
+package ee.valiit.back_bank_27.domain.locationtransaction.location;
 
 import ee.valiit.back_bank_27.domain.city.City;
 import jakarta.persistence.*;
@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "location")
 public class Location {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
