@@ -1,7 +1,7 @@
-package ee.valiit.back_bank_27.domain.location.transaction;
+package ee.valiit.back_bank_27.domain.locationtransaction;
 
-import ee.valiit.back_bank_27.domain.location.Location;
-import ee.valiit.back_bank_27.domain.location.transaction.Transaction;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
