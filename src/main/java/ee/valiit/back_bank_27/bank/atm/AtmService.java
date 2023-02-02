@@ -113,18 +113,28 @@ public class AtmService {
     }
 
     private Location createAndSaveLocation(AtmLocationDto locationDto) {
+        Location location = createLocation(locationDto);
+        locationService.saveAtmLocation(location);
+        return location;
+    }
+
+    private Location createLocation(AtmLocationDto locationDto) {
         Location location = locationMapper.toEntity(locationDto);
         City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
-        locationService.saveAtmLocation(location);
         return location;
     }
 
     private void createAndSaveLocationTransactions(AtmLocationDto locationDto, Location location) {
         List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
 
-        List<LocationTransaction> locationTransactions = new ArrayList<>();
+        List<LocationTransaction> locationTransactions = createLocationTransactions(location, typesDto);
 
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+    }
+
+    private List<LocationTransaction> createLocationTransactions(Location location, List<TransactionTypeInfo> typesDto) {
+        List<LocationTransaction> locationTransactions = new ArrayList<>();
         for (TransactionTypeInfo typeDto : typesDto) {
             LocationTransaction locationTransaction = new LocationTransaction();
             locationTransaction.setLocation(location);
@@ -133,8 +143,7 @@ public class AtmService {
             locationTransaction.setAvailable(typeDto.getIsSelected());
             locationTransactions.add(locationTransaction);
         }
-
-        locationTransactionService.saveLocationTransactions(locationTransactions);
+        return locationTransactions;
     }
 }
 
