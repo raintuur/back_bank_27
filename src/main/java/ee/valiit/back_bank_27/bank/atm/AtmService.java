@@ -1,12 +1,12 @@
 package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.*;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
@@ -58,7 +58,7 @@ public class AtmService {
         List<AtmLocationDto> locationDtos = locationMapper.toDtos(locations);
 
         // TODO: for-loopiga käia läbi  kõik locationDtos objektid
-        //  igal tsüklil otsime andmebaasist locationId ja available abil, need read,
+        //  igal tsüklil otsime andmebaasist locationId ja isAvailable abil, need read,
         //  mis kuuluvad antud locationi juurde. Tulemused mäpime TransactionTypeDto-deks.
         //  Seejärel lisame need AtmLocationDto välja transactionTypes külge.
         //
@@ -67,7 +67,6 @@ public class AtmService {
             List<TransactionTypeDto> transactionTypeDtos = locationTransactionMapper.toDtos(locationTransactions);
             locationDto.setTransactionTypes(transactionTypeDtos);
         }
-
         return locationDtos;
     }
 

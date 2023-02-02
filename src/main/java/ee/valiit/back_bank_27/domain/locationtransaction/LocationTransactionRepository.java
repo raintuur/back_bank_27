@@ -13,4 +13,5 @@ public interface LocationTransactionRepository extends JpaRepository<LocationTra
     List<LocationTransaction> findLocationTransactions(Integer locationId);
 
 
+
 }

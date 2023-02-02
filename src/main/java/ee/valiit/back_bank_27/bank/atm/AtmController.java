@@ -27,6 +27,7 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
+
     @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
     @ApiResponses(value = {
@@ -46,9 +47,10 @@ public class AtmController {
     }
 
     @DeleteMapping("/location")
-    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database ")
+    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
     }
+
 
 }
