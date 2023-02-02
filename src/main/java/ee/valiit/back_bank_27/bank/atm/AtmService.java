@@ -17,6 +17,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -89,15 +90,15 @@ public class AtmService {
     }
 
 
-    public AtmLocationInfo getAtmLocation(Integer locationId) {
+    public AtmLocationInfoDto getAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
-        AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
+        AtmLocationInfoDto atmLocationInfoDto = locationMapper.toInfo(location);
 
         List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId);
 
         List<TransactionTypeInfo> transactionTypeInfos = locationTransactionMapper.toInfos(locationTransactions);
-        atmLocationInfo.setTransactionTypes(transactionTypeInfos);
-        return atmLocationInfo;
+        atmLocationInfoDto.setTransactionTypes(transactionTypeInfos);
+        return atmLocationInfoDto;
     }
 
     public List<TransactionTypeInfo> getAllTransactionTypes() {
@@ -106,11 +107,26 @@ public class AtmService {
         return transactionTypeInfos;
     }
 
-    public void addAtmLocation(AtmLocationInfo atmLocationInfo) {
-        Location location = locationMapper.toEntity(atmLocationInfo);
-        City city = cityService.findCity(atmLocationInfo.getCityId());
+    public void addAtmLocation(AtmLocationInfoDto atmLocationInfoDto) {
+        Location location = locationMapper.toEntity(atmLocationInfoDto);
+        City city = cityService.findCity(atmLocationInfoDto.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
+
+        List<TransactionTypeInfo> transactionTypes = atmLocationInfoDto.getTransactionTypes();
+
+        List<LocationTransaction> locationTransactions = new ArrayList<>();
+
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            LocationTransaction locationTransaction = new LocationTransaction();
+            locationTransaction.setLocation(location);
+            Transaction transaction = transactionService.findTransaction(transactionType.getTypeId());
+            locationTransaction.setTransaction(transaction);
+            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransactions.add(locationTransaction);
+
+        }
+locationTransactionService.saveLocationTransactions(locationTransactions);
 
     }
 }

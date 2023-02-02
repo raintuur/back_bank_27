@@ -1,7 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfoDto;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
@@ -26,13 +26,13 @@ public class AtmController {
 
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
-    public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
-        atmService.addAtmLocation(atmLocationInfo);
+    public void addAtmLocation(@RequestBody AtmLocationInfoDto atmLocationInfoDto) {
+        atmService.addAtmLocation(atmLocationInfoDto);
     }
 
     @GetMapping("/location")
     @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from db table 'location_transaction'")
-    public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
+    public AtmLocationInfoDto getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
     }
 
