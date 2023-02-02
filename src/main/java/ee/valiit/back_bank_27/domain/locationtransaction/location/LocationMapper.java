@@ -1,5 +1,6 @@
 package ee.valiit.back_bank_27.domain.locationtransaction.location;
 
+import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
 import org.mapstruct.*;
@@ -7,17 +8,16 @@ import org.mapstruct.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", imports = {Status.class})
 public interface LocationMapper {
-    @Mapping(source = "locationName", target = "name")
-    @Mapping(source = "numberOfAtms", target = "numberOfAtms")
-    @Mapping(constant = "A", target = "status")
 
+    @Mapping(source = "locationName", target = "name")
+    @Mapping(constant = Status.ACTIVE, target = "status")
     @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
     Location toEntity(AtmLocationInfo atmLocationInfo);
 
     @Named("stringToByteArray")
-    static byte [] stringToByteArray(String picture) {
+    static byte[] stringToByteArray(String picture) {
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
@@ -35,4 +35,7 @@ public interface LocationMapper {
 
 
     List<AtmLocationDto> toDtos(List<Location> locations);
+
+
+
 }

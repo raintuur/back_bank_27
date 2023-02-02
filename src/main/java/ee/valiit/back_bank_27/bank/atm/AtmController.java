@@ -22,8 +22,6 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
-
-
     @PostMapping("/location")
     @Operation(summary = "Add ATM location.", description = "Adds ATM location to database tables 'location' and 'location_transaction'.")
     public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {

@@ -16,7 +16,9 @@ public interface LocationTransactionMapper {
 
     @Mapping(source = "transaction.type", target = "typeName")
     @Mapping(source = "transaction.id",target = "typeId")
-    @Mapping(constant = "false",target = "isSelected")
+    @Mapping(source = "available",target = "isSelected")
     TransactionTypeInfo toInfo(LocationTransaction locationTransaction);
+
     List<TransactionTypeInfo> toInfos(List<LocationTransaction> locationTransactions);
+
 }

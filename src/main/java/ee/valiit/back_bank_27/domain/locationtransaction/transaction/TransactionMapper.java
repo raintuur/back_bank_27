@@ -10,8 +10,10 @@ public interface TransactionMapper {
 
     @Mapping(source = "id", target = "typeId")
     @Mapping(source = "type", target = "typeName")
-    @Mapping(source = "", target = "isSelected")
-    TransactionTypeInfo toDto(Transaction transaction);
+    @Mapping(constant = "false", target = "isSelected")
+    TransactionTypeInfo toInfo(Transaction transaction);
 
-    void toInfos(List<Transaction> transactions);
+    List<TransactionTypeInfo> toInfos(List<Transaction> transactions);
+
+
 }
