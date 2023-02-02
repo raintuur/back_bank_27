@@ -44,6 +44,7 @@ public class AtmService {
 
     @Resource
     private LocationTransactionMapper locationTransactionMapper;
+
     @Resource
     private TransactionMapper transactionMapper;
 
@@ -102,7 +103,6 @@ public class AtmService {
     public List<TransactionTypeInfo> getAllTransactionTypes() {
         List<Transaction> transactions = transactionService.findAllTransactions();
         List<TransactionTypeInfo> transactionTypeInfos = transactionMapper.toInfos(transactions);
-
         return transactionTypeInfos;
     }
 }
