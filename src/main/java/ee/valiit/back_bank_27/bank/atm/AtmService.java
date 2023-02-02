@@ -17,6 +17,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -100,8 +101,19 @@ public class AtmService {
         City city = cityService.findCity(atmLocationInfo.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
+        List<TransactionTypeInfo> transactionTypes = atmLocationInfo.getTransactionTypes();
 
-        System.out.println();
+        List<LocationTransaction> locationTransactions = new ArrayList<>();
 
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            LocationTransaction locationTransaction = new LocationTransaction();
+            locationTransaction.setLocation(location);
+            Transaction transaction = transactionService.findTransaction(transactionType.getTypeId());
+            locationTransaction.setTransaction(transaction);
+            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransactions.add(locationTransaction);
+        }
+
+        locationTransactionService.saveLocationTransactions(locationTransactions);
     }
 }

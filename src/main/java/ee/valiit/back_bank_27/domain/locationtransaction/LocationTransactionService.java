@@ -19,4 +19,7 @@ public class LocationTransactionService {
         return locationTransactionRepository.findLocationTransactions(locationId);
     }
 
+    public void saveLocationTransactions(List<LocationTransaction> locationTransactions) {
+        locationTransactionRepository.saveAll(locationTransactions);
+    }
 }
