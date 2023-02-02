@@ -22,6 +22,7 @@ public class AtmLocationDto implements Serializable {
     @Size(max = 255)
     @NotNull
     private String locationName;
+
     @Size(max = 255)
     @NotNull
     private String cityName;

@@ -10,17 +10,18 @@ import java.util.List;
 public interface LocationMapper {
 
 
-    @Mapping(source = "id", target = "locationId")
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.name", target = "cityName")
+    @Mapping(source = "id",target = "locationId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
 
-    @Mapping(source = "name", target = "locationName")
-    @Mapping(source = "city.id", target = "cityId")
+    @Mapping(source = "name",target = "locationName")
+    @Mapping(source = "city.id",target = "cityId")
     @Mapping(ignore = true,target = "picture")
     AtmLocationInfo toInfo(Location location);
 
-    List<AtmLocationDto> toDtos(List<Location> locations);
 
+
+    List<AtmLocationDto> toDtos(List<Location> locations);
 
 }
