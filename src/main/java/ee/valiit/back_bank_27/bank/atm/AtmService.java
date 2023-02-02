@@ -147,24 +147,3 @@ public class AtmService {
         return locationTransaction;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
