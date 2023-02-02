@@ -81,15 +81,7 @@ public class AtmService {
         atmLocationDto.setTransactionTypes(transactionTypeInfos);
         return atmLocationDto;
     }
-    private List<Location> findLocations(Integer cityId) {
-        List<Location> locations;
-        if (cityId == 0) {
-            locations =  locationService.findActiveLocations();
-        } else {
-            locations = locationService.findActiveLocations(cityId);
-        }
-        return locations;
-    }
+
     public List<TransactionTypeInfo> getAllTransactionTypes() {
         List<Transaction> transactions = transactionService.findAllTransactions();
         List<TransactionTypeInfo> transactionTypeInfos = transactionMapper.toInfos(transactions);
@@ -99,8 +91,8 @@ public class AtmService {
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
-    }
 
+    }
     private List<Location> findLocations(Integer cityId) {
         List<Location> locations;
         if (cityId == 0) {
