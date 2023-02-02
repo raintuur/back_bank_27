@@ -13,6 +13,7 @@ import lombok.Setter;
 @Table(name = "location_transaction")
 public class LocationTransaction {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
