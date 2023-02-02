@@ -7,8 +7,10 @@ import java.util.List;
 
 @Service
 public class TransactionService {
+
     @Resource
     private TransactionRepository transactionRepository;
+
 
     public List<Transaction> findAllTransactions() {
         List<Transaction> transactions = transactionRepository.findAll();
@@ -18,6 +20,5 @@ public class TransactionService {
     public Transaction findTransaction(Integer typeId) {
         Transaction transaction = transactionRepository.findById(typeId).get();
         return transaction;
-
     }
 }

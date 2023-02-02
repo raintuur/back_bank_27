@@ -38,8 +38,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.FORBIDDEN);
     }
 
-//
-//   @Override
+
+//    @Override
 //    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatus status, WebRequest request) {
 //        ApiError apiError = new ApiError();
 //        apiError.setMessage("Invalid request body content.");

@@ -10,14 +10,15 @@ import java.util.List;
 public interface LocationTransactionMapper {
 
     @Mapping(source = "transaction.type", target = "typeName")
-    TransactionTypeDto toDtos(LocationTransaction locationTransaction);
+    TransactionTypeDto toDto(LocationTransaction locationTransaction);
 
-    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransaction);
+    List<TransactionTypeDto> toDtos(List<LocationTransaction> locationTransactions);
 
     @Mapping(source = "transaction.type", target = "typeName")
-    @Mapping(source = "transaction.id", target = "typeId")
-    @Mapping(source = "available", target = "isSelected")
+    @Mapping(source = "transaction.id",target = "typeId")
+    @Mapping(source = "available",target = "isSelected")
     TransactionTypeInfo toInfo(LocationTransaction locationTransaction);
+
     List<TransactionTypeInfo> toInfos(List<LocationTransaction> locationTransactions);
 
 }
