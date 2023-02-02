@@ -23,7 +23,7 @@ public class LocationTransaction {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "transaction_id", nullable = false)
+    @JoinColumn(name = "transactions_id", nullable = false)
     private Transaction transaction;
 
     @NotNull
