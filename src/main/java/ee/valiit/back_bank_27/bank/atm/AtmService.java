@@ -17,6 +17,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -87,8 +88,7 @@ public class AtmService {
         Location location = locationService.findLocation(locationId);
         AtmLocationInfo atmLocationInfo = locationMapper.toInfo(location);
         List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationId, true);
-        locationTransactionMapper.
-        atmLocationInfo.setTransactionTypes();
+
         return atmLocationInfo;
     }
 }
