@@ -56,14 +56,9 @@ public class AtmService {
     }
 
     public List<AtmLocationResponse> getAtmLocations(Integer cityId) {
-        List<Location> locations;
-        if (cityId == 0) {
-            locations =  locationService.findActiveLocations();
-        } else {
-            locations = locationService.findActiveLocations(cityId);
-        }
-        List<AtmLocationResponse> locationDtos = createLocationDtos(locations);
-        return locationDtos;
+        List<Location> locations = findLocations(cityId);
+        List<AtmLocationResponse> atmLocations = createAtmLocations(locations);
+        return atmLocations;
     }
 
     public void deleteAtmLocation(Integer locationId) {
@@ -96,7 +91,18 @@ public class AtmService {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
     }
-    private List<AtmLocationResponse> createLocationDtos(List<Location> locations) {
+
+    private List<Location> findLocations(Integer cityId) {
+        List<Location> locations;
+        if (cityId == 0) {
+            locations =  locationService.findActiveLocations();
+        } else {
+            locations = locationService.findActiveLocations(cityId);
+        }
+        return locations;
+    }
+
+    private List<AtmLocationResponse> createAtmLocations(List<Location> locations) {
         List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
         for (AtmLocationResponse locationDto : locationDtos) {
             List<LocationTransaction> locationTransactions = locationTransactionService.findLocationTransactions(locationDto.getLocationId(), true);
@@ -127,7 +133,6 @@ public class AtmService {
 
     private List<LocationTransaction> createLocationTransactions(Location location, List<TransactionTypeInfo> typesDto) {
         List<LocationTransaction> locationTransactions = new ArrayList<>();
-
         for (TransactionTypeInfo typeDto : typesDto) {
             LocationTransaction locationTransaction = createLocationTransaction(location, typeDto);
             locationTransactions.add(locationTransaction);

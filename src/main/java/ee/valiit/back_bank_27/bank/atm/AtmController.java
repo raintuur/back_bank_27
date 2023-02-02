@@ -22,7 +22,12 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
-
+    @GetMapping("/cities")
+    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
+    public List<CityDto> getAllCities() {
+        List<CityDto> cities = atmService.getAllCities();
+        return cities;
+    }
 
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
@@ -36,13 +41,11 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
-
     @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
     }
-
 
     @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
@@ -55,18 +58,10 @@ public class AtmController {
     }
 
 
-    @GetMapping("/cities")
-    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
-    public List<CityDto> getAllCities() {
-        List<CityDto> cities = atmService.getAllCities();
-        return cities;
-    }
-
     @GetMapping("/transaction-types")
     @Operation(summary = "Finds all transation types", description = "Finds all transaction types from db table 'transaction'")
     public List<TransactionTypeInfo> getAllTransactionTypes() {
         List<TransactionTypeInfo> transactions = atmService.getAllTransactionTypes();
         return transactions;
     }
-
 }
