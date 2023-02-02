@@ -1,7 +1,7 @@
 package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
+import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
@@ -22,15 +22,22 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+    @GetMapping("/cities")
+    @Operation(summary = "Finds all cities from system/database.", description = "This information is used in frontend to create cities dropdown.")
+    public List<CityDto> getAllCities() {
+        List<CityDto> cities = atmService.getAllCities();
+        return cities;
+    }
+
     @PostMapping("/location")
     @Operation(summary = "Add ATM location.", description = "Adds ATM location to database tables 'location' and 'location_transaction'.")
-    public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
-        atmService.addAtmLocation(atmLocationInfo);
+    public void addAtmLocation(@RequestBody AtmLocationDto atmLocationDto) {
+        atmService.addAtmLocation(atmLocationDto);
     }
 
     @GetMapping("/location")
     @Operation(summary = "Finds ATM location by locationId.", description = "Finds all ATM locations from database table 'location_transaction'.")
-    public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
+    public AtmLocationDto getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
     }
 
@@ -45,17 +52,9 @@ public class AtmController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Could not find any ATM locations", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public List<AtmLocationDto> getAtmLocations(@RequestParam Integer cityId) {
-        List<AtmLocationDto> atmLocations = atmService.getAtmLocations(cityId);
+    public List<AtmLocationResponse> getAtmLocations(@RequestParam Integer cityId) {
+        List<AtmLocationResponse> atmLocations = atmService.getAtmLocations(cityId);
         return atmLocations;
-    }
-
-
-    @GetMapping("/cities")
-    @Operation(summary = "Finds all cities from system/database.", description = "This information is used in frontend to create cities dropdown.")
-    public List<CityDto> getAllCities() {
-        List<CityDto> cities = atmService.getAllCities();
-        return cities;
     }
 
     @GetMapping("/transaction-types")
