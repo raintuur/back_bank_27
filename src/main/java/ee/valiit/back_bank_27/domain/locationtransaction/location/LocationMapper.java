@@ -12,11 +12,8 @@ public interface LocationMapper {
 
     @Mapping(source = "locationName", target = "name")
     @Mapping(source = "numberOfAtms", target = "numberOfAtms")
-
-    @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
-
     @Mapping(constant = "A", target = "status")
-
+    @Mapping(source = "picture", target = "picture", qualifiedByName = "stringToByteArray")
     Location toEntity(AtmLocationInfo atmLocationInfo);
 
     @Named("stringToByteArray")
@@ -29,16 +26,11 @@ public interface LocationMapper {
     @Mapping(source = "name",target = "locationName")
     @Mapping(source = "city.name",target = "cityName")
     AtmLocationDto toDto(Location location);
-    @Mapping(source="name", target= "locationName")
-    @Mapping(source="city.name", target= "cityId")
-    @Mapping(ignore = true, target= "picture")
-    AtmLocationInfo toInfo(Location location);
-
 
     @Mapping(source = "name",target = "locationName")
     @Mapping(source = "city.id",target = "cityId")
     @Mapping(ignore = true,target = "picture")
-    AtmLocationInfo toInfos(Location location);
+    AtmLocationInfo toInfo(Location location);
 
 
 

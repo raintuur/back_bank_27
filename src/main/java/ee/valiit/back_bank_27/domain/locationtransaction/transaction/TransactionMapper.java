@@ -13,8 +13,7 @@ public interface TransactionMapper {
     @Mapping(constant = "false", target = "isSelected")
     TransactionTypeInfo toInfo(Transaction transaction);
 
-    List<TransactionTypeInfo> toInfos(List< Transaction> transactions);
-
+    List<TransactionTypeInfo> toInfos(List<Transaction> transactions);
 
 
 }
