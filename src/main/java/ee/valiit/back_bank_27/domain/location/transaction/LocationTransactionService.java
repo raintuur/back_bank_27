@@ -16,8 +16,9 @@ public class LocationTransactionService {
         return locationTransactionRepository.findLocationTransactions(locationId, isAvailable);
     }
 
+
     public List<LocationTransaction> findLocationTransactions(Integer locationId) {
         return locationTransactionRepository.findLocationTransactions(locationId);
-}
+    }
 
 }
