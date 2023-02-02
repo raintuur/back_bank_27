@@ -1,7 +1,6 @@
 package ee.valiit.back_bank_27.domain.locationtransaction.transaction;
 
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
-import org.apache.catalina.LifecycleState;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -13,7 +12,8 @@ public interface TransactionMapper {
     @Mapping(source = "type", target = "typeName")
     @Mapping(constant = "false", target = "isSelected")
     TransactionTypeInfo toInfo(Transaction transaction);
+
     List<TransactionTypeInfo> toInfos(List<Transaction> transactions);
 
-}
 
+}

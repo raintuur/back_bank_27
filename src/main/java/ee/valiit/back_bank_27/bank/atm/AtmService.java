@@ -4,12 +4,12 @@ import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.domain.city.City;
 import ee.valiit.back_bank_27.domain.city.CityMapper;
 import ee.valiit.back_bank_27.domain.city.CityService;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
-import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.LocationTransactionService;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.Location;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationMapper;
+import ee.valiit.back_bank_27.domain.locationtransaction.location.LocationService;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionMapper;
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
@@ -29,13 +29,13 @@ public class AtmService {
     private CityService cityService;
 
     @Resource
-    private TransactionService transactionService;
-
-    @Resource
     private LocationService locationService;
 
     @Resource
     private LocationTransactionService locationTransactionService;
+
+    @Resource
+    private TransactionService transactionService;
 
     @Resource
     private CityMapper cityMapper;
@@ -45,6 +45,7 @@ public class AtmService {
 
     @Resource
     private LocationTransactionMapper locationTransactionMapper;
+
     @Resource
     private TransactionMapper transactionMapper;
 
@@ -64,7 +65,7 @@ public class AtmService {
             locations = locationService.findActiveLocations(cityId);
         }
 
-        List<AtmLocationDto> locationDtos = locationMapper.toDto(locations);
+        List<AtmLocationResponse> locationDtos = locationMapper.toDtos(locations);
 
         // TODO: for-loopiga käia läbi  kõik locationDtos objektid
         //  igal tsüklil otsime andmebaasist locationId ja isAvailable abil, need read,
@@ -103,30 +104,30 @@ public class AtmService {
     public List<TransactionTypeInfo> getAllTransactionTypes() {
         List<Transaction> transactions = transactionService.findAllTransactions();
         List<TransactionTypeInfo> transactionTypeInfos = transactionMapper.toInfos(transactions);
-
         return transactionTypeInfos;
     }
 
-    public void addAtmLocation(AtmLocationDto atmLocationDto) {
-        Location location = locationMapper.toEntity(atmLocationDto);
-        City city = cityService.findCity(atmLocationDto.getCityId());
+    public void addAtmLocation(AtmLocationDto locationDto) {
+        Location location = locationMapper.toEntity(locationDto);
+        City city = cityService.findCity(locationDto.getCityId());
         location.setCity(city);
         locationService.saveAtmLocation(location);
 
-        List<TransactionTypeInfo> transactionTypes = atmLocationDto.getTransactionTypes();
+        List<TransactionTypeInfo> typesDto = locationDto.getTransactionTypes();
 
         List<LocationTransaction> locationTransactions = new ArrayList<>();
 
-        for (TransactionTypeInfo transactionType : transactionTypes) {
+        for (TransactionTypeInfo typeDto : typesDto) {
             LocationTransaction locationTransaction = new LocationTransaction();
             locationTransaction.setLocation(location);
-            Transaction transaction = transactionService.findTransaction(transactionType.getTypeId());
+            Transaction transaction = transactionService.findTransaction(typeDto.getTypeId());
             locationTransaction.setTransaction(transaction);
-            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransaction.setAvailable(typeDto.getIsSelected());
             locationTransactions.add(locationTransaction);
         }
 
         locationTransactionService.saveLocationTransactions(locationTransactions);
+
 
     }
 }
