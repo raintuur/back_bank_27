@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2023-01-27 10:12:06.276
+-- Last modification date: 2023-02-02 10:40:36.01
 
 -- tables
 -- Table: city
@@ -19,6 +19,7 @@ CREATE TABLE location (
                           status char(1)  NOT NULL,
                           longitude decimal(6,2)  NULL,
                           latitude decimal(6,2)  NULL,
+                          CONSTRAINT location_ak_1 UNIQUE () NOT DEFERRABLE  INITIALLY IMMEDIATE,
                           CONSTRAINT location_pk PRIMARY KEY (id)
 );
 
