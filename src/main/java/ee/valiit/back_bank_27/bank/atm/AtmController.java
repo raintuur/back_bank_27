@@ -21,14 +21,14 @@ public class AtmController {
 
     @PostMapping ("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to DB tables 'location' and 'location_transaction'")
-    public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
-        atmService.addAtmLocation(atmLocationInfo);
+    public void addAtmLocation(@RequestBody AtmLocationDto atmLocationDto) {
+        atmService.addAtmLocation(atmLocationDto);
 
     }
 
     @GetMapping("/location")
     @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from DB table 'location_transaction'")
-    public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
+    public AtmLocationDto getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
     }
 
