@@ -9,8 +9,13 @@ import java.util.List;
 public class LocationTransactionService {
     @Resource
     private LocationTransactionRepository locationTransactionRepository;
+
     public List<LocationTransaction> findLocationTransactions(Integer locationId, Boolean isAvailable) {
         return locationTransactionRepository.findLocationTransactions(locationId, isAvailable);
+    }
+
+    public List<LocationTransaction> findLocationTransactions(Integer locationId) {
+        return locationTransactionRepository.findLocationTransactions(locationId);
     }
 
 }
