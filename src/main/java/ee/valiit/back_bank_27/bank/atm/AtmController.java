@@ -56,7 +56,7 @@ public class AtmController {
     @GetMapping("/transaction-types")
     @Operation(summary = "Finds all transation types", description = "Finds all transaction types from db table 'transaction'")
     public List<Transaction> getAllTransactionTypes() {
-        List<Transaction> transactions = atmService.getAllTransactionTypes();
+        atmService.getAllTransactionTypes();
         return transactions;
     }
 
