@@ -2,11 +2,10 @@ package ee.valiit.back_bank_27.bank.atm.dto;
 
 import lombok.Data;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 @Data
-public class AtmLocationInfo {
+public class AtmLocationDto {
     private Integer cityId;
     private String locationName;
     private Integer numberOfAtms;
