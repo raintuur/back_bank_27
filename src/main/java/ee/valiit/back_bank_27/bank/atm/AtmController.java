@@ -1,8 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm;
 
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
-import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationInfo;
-import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
+import ee.valiit.back_bank_27.bank.atm.dto.*;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -21,10 +19,23 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+    @PostMapping ("/location")
+    @Operation(summary = "Add ATM location", description = "Adds ATM location to DB tables 'location' and 'location_transaction'")
+    public void addAtmLocation(@RequestBody AtmLocationInfo atmLocationInfo) {
+        atmService.addAtmLocation(atmLocationInfo);
+
+    }
+
     @GetMapping("/location")
-    @Operation(summary = "Finds ATM location by locationId", description = "???")
+    @Operation(summary = "Finds ATM location by locationId", description = "Finds all ATM locations from DB table 'location_transaction'")
     public AtmLocationInfo getAtmLocation(@RequestParam Integer locationId) {
         return atmService.getAtmLocation(locationId);
+    }
+
+    @DeleteMapping("/location")
+    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
+    public void deleteAtmLocation(@RequestParam Integer locationId) {
+        atmService.deleteAtmLocation(locationId);
     }
 
 
@@ -46,10 +57,13 @@ public class AtmController {
         return cities;
     }
 
-    @DeleteMapping("/location")
-    @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
-    public void deleteAtmLocation(@RequestParam Integer locationId) {
-        atmService.deleteAtmLocation(locationId);
+
+
+    @GetMapping("/transaction-types")
+    @Operation(summary = "Finds all transaction types", description ="Finds all transaction types from DB table 'transaction'")
+    public List<TransactionTypeInfo> getAllTransactionTypes() {
+        List<TransactionTypeInfo> transactions = atmService.getAllTransactionTypes();
+        return transactions;
     }
 
 
