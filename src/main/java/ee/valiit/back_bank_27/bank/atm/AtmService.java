@@ -112,6 +112,20 @@ public class AtmService {
         location.setCity(city);
         locationService.saveAtmLocation(location);
 
+        List<TransactionTypeInfo> transactionTypes = atmLocationInfo.getTransactionTypes();
+
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            LocationTransaction locationTransaction = new LocationTransaction();
+            locationTransaction.setLocation(location);
+            Transaction transaction1 = transactionService.findAllTransactions(transactionType.getTypeId());
+
+            locationTransaction.setTransaction(transaction);
+            locationTransaction.setAvailable(transactionType.get);
+
+        }
+
+
+
     }
 }
 
