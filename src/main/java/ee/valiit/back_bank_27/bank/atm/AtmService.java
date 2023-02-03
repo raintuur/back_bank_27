@@ -153,6 +153,13 @@ public class AtmService {
     public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
         locationMapper.updateLocation(atmLocationDto, location);
+        locationService.saveAtmLocation(location);
+
+        List<TransactionTypeInfo> transactionTypes = atmLocationDto.getTransactionTypes();
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            locationTransactionService.findLocationTransactions(transactionType.getTypeId());
+        }
+
 
     }
 }
