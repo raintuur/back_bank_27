@@ -157,7 +157,7 @@ public class AtmService {
 
         List<TransactionTypeInfo> transactionTypes = atmLocationDto.getTransactionTypes();
         for (TransactionTypeInfo transactionType : transactionTypes) {
-            locationTransactionService.
+            locationTransactionService.saveLocationTransactions();
         }
 
 
