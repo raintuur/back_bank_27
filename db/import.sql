@@ -1,9 +1,9 @@
 INSERT INTO public.role (id, type) VALUES (DEFAULT, 'admin');
 INSERT INTO public.role (id, type) VALUES (DEFAULT, 'customer');
 
-INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Tallinn');
+INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Kuressaare');
 INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Tartu');
-INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Pärnu');
+INSERT INTO public.city (id, name) VALUES (DEFAULT, 'Tallinn');
 
 INSERT INTO public.transaction (id, type) VALUES (DEFAULT, 'sularaha sisse');
 INSERT INTO public.transaction (id, type) VALUES (DEFAULT, 'sularaha välja');
