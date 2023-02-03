@@ -151,6 +151,8 @@ public class AtmService {
     }
 
     public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+        Location location = locationService.findLocation(locationId);
+        locationMapper.updateLocation(atmLocationDto, location);
 
     }
 }
