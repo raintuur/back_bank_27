@@ -90,14 +90,17 @@ public class AtmService {
         return transactionTypeInfos;
     }
 
-
     @Transactional
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
     }
 
-
+    @Transactional
+    public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+        updateAndSaveLocation(locationId, atmLocationDto);
+        updateAndSaveLocationTransaction(locationId, atmLocationDto);
+    }
 
     private List<Location> findLocations(Integer cityId) {
         List<Location> locations;
@@ -156,14 +159,18 @@ public class AtmService {
         return locationTransaction;
     }
 
-    List<LocationTransaction> locationTransactions = getUpdatedLocationTransactions(locationId, atmLocationDto);
-        locationTransactionService.saveLocationTransactions(locationTransactions);
-    }
+
 
     private void updateAndSaveLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = getUpdatedLocation(locationId, atmLocationDto);
         locationService.saveAtmLocation(location);
     }
+
+    private void updateAndSaveLocationTransaction(Integer locationId, AtmLocationDto atmLocationDto) {
+        List<LocationTransaction> locationTransactions = getUpdatedLocationTransactions(locationId, atmLocationDto);
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+    }
+
 
     private Location getUpdatedLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
