@@ -22,6 +22,9 @@ public interface LocationMapper {
 
     @Named("stringToByteArray")
     static byte[] stringToByteArray(String picture) {
+        if (picture == null) {
+            return null;
+        }
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
