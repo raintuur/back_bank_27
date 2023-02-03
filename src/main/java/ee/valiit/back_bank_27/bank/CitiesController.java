@@ -12,12 +12,12 @@ import java.util.List;
 public class CitiesController {
 
     @Resource
-    private CitiesService;
+    private CitiesService citiesService;
 
     @GetMapping("/cities")
     @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
     public List<CityDto> getAllCities() {
-        List<CityDto> cities = atmService.getAllCities();
+        List<CityDto> cities = citiesService.getAllCities();
         return cities;
     }
 }
