@@ -2,7 +2,6 @@ package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
-import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,7 +22,6 @@ public class AtmController {
     private AtmService atmService;
 
 
-
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
     public void addAtmLocation(@RequestBody AtmLocationDto atmLocationDto) {
@@ -36,6 +34,11 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
+    @PutMapping("/location")
+    @Operation(summary = "Edit ATM location", description = "Edits ATM location in db tables 'location' and 'location_transaction'")
+    public void editAtmLocation(@RequestParam Integer locationId, @RequestBody AtmLocationDto atmLocationDto) {
+        atmService.editAtmLocation(locationId, atmLocationDto);
+    }
 
     @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
@@ -52,14 +55,6 @@ public class AtmController {
     public List<AtmLocationResponse> getAtmLocations(@RequestParam Integer cityId) {
         List<AtmLocationResponse> atmLocations = atmService.getAtmLocations(cityId);
         return atmLocations;
-    }
-
-
-    @GetMapping("/cities")
-    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
-    public List<CityDto> getAllCities() {
-        List<CityDto> cities = atmService.getAllCities();
-        return cities;
     }
 
     @GetMapping("/transaction-types")
