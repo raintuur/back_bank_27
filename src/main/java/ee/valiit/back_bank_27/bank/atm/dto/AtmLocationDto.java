@@ -10,7 +10,6 @@ public class AtmLocationDto {
     private String locationName;
     private Integer numberOfAtms;
     private String picture;
-
     private List<TransactionTypeInfo> transactionTypes;
 
 }

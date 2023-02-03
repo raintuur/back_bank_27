@@ -16,7 +16,4 @@ public interface LocationTransactionRepository extends JpaRepository<LocationTra
     @Query("select l from LocationTransaction l where l.location.id = ?1 and l.transaction.id = ?2")
     Optional<LocationTransaction> findLocation(Integer locationId, Integer transactionId);
 
-
-
-
 }

@@ -21,8 +21,6 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
-
-
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
     public void addAtmLocation(@RequestBody AtmLocationDto atmLocationDto) {
@@ -35,13 +33,11 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
-
     @PutMapping("/location")
     @Operation(summary = "Edit ATM location", description = "Edits ATM location in db tables 'location' and 'location_transaction'")
     public void editAtmLocation(@RequestParam Integer locationId, @RequestBody AtmLocationDto atmLocationDto) {
         atmService.editAtmLocation(locationId, atmLocationDto);
     }
-
 
     @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")

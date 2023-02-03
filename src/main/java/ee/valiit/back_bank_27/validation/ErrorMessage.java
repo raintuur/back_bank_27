@@ -5,8 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorMessage {
 
-    INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", "666"),
-    NO_ATM_LOCATIONS("Ei leidnud ühtegi pangaautomaadi asukohta", "555");
+    INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", "666"), NO_ATM_LOCATIONS("Ei leidnud ühtegi pangaautomaadi asukohta", "555");
 
     private String message;
     private String code;
@@ -15,6 +14,5 @@ public enum ErrorMessage {
         this.message = message;
         this.code = code;
     }
-
 
 }

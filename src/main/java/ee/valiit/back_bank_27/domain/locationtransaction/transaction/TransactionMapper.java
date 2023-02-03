@@ -1,7 +1,9 @@
 package ee.valiit.back_bank_27.domain.locationtransaction.transaction;
 
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
@@ -14,6 +16,5 @@ public interface TransactionMapper {
     TransactionTypeInfo toInfo(Transaction transaction);
 
     List<TransactionTypeInfo> toInfos(List<Transaction> transactions);
-
 
 }

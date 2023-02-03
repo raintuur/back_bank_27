@@ -150,8 +150,6 @@ public class AtmService {
         return locationTransaction;
     }
 
-
-
     private void updateAndSaveLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = getUpdatedLocation(locationId, atmLocationDto);
         locationService.saveAtmLocation(location);
@@ -161,7 +159,6 @@ public class AtmService {
         List<LocationTransaction> locationTransactions = getUpdatedLocationTransactions(locationId, atmLocationDto);
         locationTransactionService.saveLocationTransactions(locationTransactions);
     }
-
 
     private Location getUpdatedLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);

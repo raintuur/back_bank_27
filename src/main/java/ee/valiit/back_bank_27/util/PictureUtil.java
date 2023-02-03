@@ -10,8 +10,5 @@ public class PictureUtil {
         }
 //        One liner ternary
 //        return byteArray == null ? null : new String(byteArray);
-
-
-
     }
 }
