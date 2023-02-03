@@ -38,10 +38,7 @@ public class AtmService {
     private LocationTransactionService locationTransactionService;
 
     @Resource
-    private TransactionService transactionService;
-
-    @Resource
-    private CityMapper cityMapper;
+    private TransactionService transactionService
 
     @Resource
     private LocationMapper locationMapper;
@@ -175,7 +172,16 @@ public class AtmService {
     private Location getUpdatedLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
         locationMapper.updateLocation(atmLocationDto, location);
+        updateCityIfChanged(atmLocationDto.getCityId(), location);
+
         return location;
+    }
+
+    private void updateCityIfChanged(Integer dtoCityId, Location location) {
+        if (!dtoCityId.equals(location.getCity().getId())) {
+            City city = cityService.findCity(dtoCityId);
+            location.setCity(city);
+        }
     }
 
     private List<LocationTransaction> getUpdatedLocationTransactions(Integer locationId, AtmLocationDto atmLocationDto) {
