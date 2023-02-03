@@ -148,6 +148,11 @@ public class AtmService {
         locationTransaction.setAvailable(typeDto.getIsSelected());
         return locationTransaction;
     }
+
+    public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+        Location location = locationService.findLocation(locationId);
+        locationMapper.updateLocation(location, atmLocationDto);
+    }
 }
 
 
