@@ -31,6 +31,7 @@ public class AtmService {
     @Resource
     private LocationService locationService;
 
+
     @Resource
     private LocationTransactionService locationTransactionService;
 
@@ -57,8 +58,8 @@ public class AtmService {
 
     public List<AtmLocationResponse> getAtmLocations(Integer cityId) {
         List<Location> locations = findLocations(cityId);
-        List<AtmLocationResponse> locationDtos = createAtmLocations(locations);
-        return locationDtos;
+        List<AtmLocationResponse> atmLocations = createAtmLocations(locations);
+        return atmLocations;
     }
 
     public void deleteAtmLocation(Integer locationId) {
@@ -151,27 +152,7 @@ public class AtmService {
 
     public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
-        locationMapper.updateLocation(location, atmLocationDto);
+        locationMapper.updateLocation(atmLocationDto, location);
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

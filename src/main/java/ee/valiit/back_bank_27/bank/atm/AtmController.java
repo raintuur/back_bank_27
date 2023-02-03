@@ -22,6 +22,13 @@ public class AtmController {
     @Resource
     private AtmService atmService;
 
+    @GetMapping("/cities")
+    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
+    public List<CityDto> getAllCities() {
+        List<CityDto> cities = atmService.getAllCities();
+        return cities;
+    }
+
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
     public void addAtmLocation(@RequestBody AtmLocationDto atmLocationDto) {
@@ -34,18 +41,19 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
-    @PutMapping ("/location")
-    @Operation(summary = "Edit ATM location", description = "Edits ATM location")
+
+    @PutMapping("/location")
+    @Operation(summary = "Edit ATM location", description = "Edits ATM location in db tables 'location' and 'location_transaction'")
     public void editAtmLocation(@RequestParam Integer locationId, @RequestBody AtmLocationDto atmLocationDto) {
-        atmService.editAtmLocation( locationId, atmLocationDto);
+        atmService.editAtmLocation(locationId, atmLocationDto);
     }
+
 
     @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
     public void deleteAtmLocation(@RequestParam Integer locationId) {
         atmService.deleteAtmLocation(locationId);
     }
-
 
     @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
@@ -55,13 +63,6 @@ public class AtmController {
     public List<AtmLocationResponse> getAtmLocations(@RequestParam Integer cityId) {
         List<AtmLocationResponse> atmLocations = atmService.getAtmLocations(cityId);
         return atmLocations;
-    }
-
-    @GetMapping("/cities")
-    @Operation(summary = "Finds all cities from system/database", description = "This information is used in frontend to create cities dropdown")
-    public List<CityDto> getAllCities() {
-        List<CityDto> cities = atmService.getAllCities();
-        return cities;
     }
 
     @GetMapping("/transaction-types")
