@@ -4,10 +4,7 @@ import ee.valiit.back_bank_27.bank.Status;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
 import ee.valiit.back_bank_27.util.PictureUtil;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -22,6 +19,9 @@ public interface LocationMapper {
 
     @Named("stringToByteArray")
     static byte[] stringToByteArray(String picture) {
+        if ("".equals(picture)) {
+            return null;
+        }
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
@@ -38,4 +38,7 @@ public interface LocationMapper {
 
     List<AtmLocationResponse> toDtos(List<Location> locations);
 
+    @InheritConfiguration(name = "toEntity")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Location updateLocation(AtmLocationDto atmLocationDto, @MappingTarget Location location);
 }
