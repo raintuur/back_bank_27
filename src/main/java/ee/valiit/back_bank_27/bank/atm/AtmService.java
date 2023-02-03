@@ -31,7 +31,6 @@ public class AtmService {
     @Resource
     private LocationService locationService;
 
-
     @Resource
     private LocationTransactionService locationTransactionService;
 
@@ -65,7 +64,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -96,7 +95,7 @@ public class AtmService {
     private List<Location> findLocations(Integer cityId) {
         List<Location> locations;
         if (cityId == 0) {
-            locations =  locationService.findActiveLocations();
+            locations = locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
