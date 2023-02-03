@@ -2,7 +2,6 @@ package ee.valiit.back_bank_27.bank.atm;
 
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationDto;
 import ee.valiit.back_bank_27.bank.atm.dto.AtmLocationResponse;
-import ee.valiit.back_bank_27.bank.atm.dto.CityDto;
 import ee.valiit.back_bank_27.bank.atm.dto.TransactionTypeInfo;
 import ee.valiit.back_bank_27.infrastructure.error.ApiError;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,8 +20,6 @@ public class AtmController {
 
     @Resource
     private AtmService atmService;
-
-
 
     @PostMapping("/location")
     @Operation(summary = "Add ATM location", description = "Adds ATM location to db tables 'location' and 'location_transaction'")
