@@ -15,6 +15,7 @@ import ee.valiit.back_bank_27.domain.locationtransaction.transaction.Transaction
 import ee.valiit.back_bank_27.domain.locationtransaction.transaction.TransactionService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -88,6 +89,7 @@ public class AtmService {
         return transactionTypeInfos;
     }
 
+    @Transactional
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
