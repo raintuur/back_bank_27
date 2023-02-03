@@ -41,11 +41,13 @@ public class AtmController {
         return atmService.getAtmLocation(locationId);
     }
 
-    @PostMapping("/location")
-    @Operation(summary = "Edit ATM location.", description = "edits ATM location to db tables 'location' and 'location_transaction'")
+
+    @PutMapping("/location")
+    @Operation(summary = "Edit ATM location", description = "Edits ATM location in db tables 'location' and 'location_transaction'")
     public void editAtmLocation(@RequestParam Integer locationId, @RequestBody AtmLocationDto atmLocationDto) {
         atmService.editAtmLocation(locationId, atmLocationDto);
     }
+
 
     @DeleteMapping("/location")
     @Operation(summary = "Deletes ATM location", description = "ATM location status is changed in database")
@@ -55,7 +57,9 @@ public class AtmController {
 
     @GetMapping("/locations")
     @Operation(summary = "Finds ATM locations with transactions info by cityId", description = "If cityId is '0' then all ATM locations are returned")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK"), @ApiResponse(responseCode = "404", description = "Could not find any ATM locations", content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Could not find any ATM locations", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public List<AtmLocationResponse> getAtmLocations(@RequestParam Integer cityId) {
         List<AtmLocationResponse> atmLocations = atmService.getAtmLocations(cityId);
         return atmLocations;
@@ -67,4 +71,5 @@ public class AtmController {
         List<TransactionTypeInfo> transactions = atmService.getAllTransactionTypes();
         return transactions;
     }
+
 }

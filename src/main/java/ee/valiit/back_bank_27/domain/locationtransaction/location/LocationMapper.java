@@ -19,7 +19,7 @@ public interface LocationMapper {
 
     @Named("stringToByteArray")
     static byte[] stringToByteArray(String picture) {
-        if ("".equals(picture) || picture == null) {
+        if (picture == null || "".equals(picture)) {
             return null;
         }
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
