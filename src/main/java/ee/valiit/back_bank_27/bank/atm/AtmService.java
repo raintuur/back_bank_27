@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -151,8 +152,26 @@ public class AtmService {
     }
 
     public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+        Location location = getUpdatedLocation(locationId, atmLocationDto);
+        locationService.saveAtmLocation(location);
+        List<LocationTransaction> locationTransactions = getUpdatedLocationTransactions(locationId, atmLocationDto);
+        locationTransactionService.saveLocationTransactions(locationTransactions);
+    }
+
+    private Location getUpdatedLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
         locationMapper.updateLocation(atmLocationDto, location);
+        return location;
+    }
 
+    private List<LocationTransaction> getUpdatedLocationTransactions(Integer locationId, AtmLocationDto atmLocationDto) {
+        List<LocationTransaction> locationTransactions = new ArrayList<>();
+        List<TransactionTypeInfo> transactionTypes = atmLocationDto.getTransactionTypes();
+        for (TransactionTypeInfo transactionType : transactionTypes) {
+            LocationTransaction locationTransaction = locationTransactionService.findLocation(locationId, transactionType.getTypeId());
+            locationTransaction.setAvailable(transactionType.getIsSelected());
+            locationTransactions.add(locationTransaction);
+        }
+        return locationTransactions;
     }
 }
