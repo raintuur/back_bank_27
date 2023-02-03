@@ -26,6 +26,7 @@ public class LocationTransactionService {
         locationTransactionRepository.saveAll(locationTransactions);
     }
 
-    public LocationTransaction findLocation(Integer locationId, Integer transactionId);
-
+   public LocationTransaction findLocation(Integer locationId, Integer transactionId) {
+       return locationTransactionRepository.findLocation(locationId, transactionId).get();
+   }
 }
