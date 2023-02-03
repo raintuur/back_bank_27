@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static ee.valiit.back_bank_27.bank.Status.DEACTIVATED;
@@ -66,7 +67,7 @@ public class AtmService {
     public void deleteAtmLocation(Integer locationId) {
         Location location = locationService.findLocation(locationId);
         String currentName = location.getName();
-        String newName = currentName + " (deactivated: " + LocalDateTime.now() + ")";
+        String newName = currentName + " (deactivated: "  + LocalDateTime.now() + ")";
         location.setName(newName);
         location.setStatus(DEACTIVATED);
         locationService.saveAtmLocation(location);
@@ -93,13 +94,18 @@ public class AtmService {
     public void addAtmLocation(AtmLocationDto locationDto) {
         Location location = createAndSaveLocation(locationDto);
         createAndSaveLocationTransactions(locationDto, location);
+    }
 
+    @Transactional
+    public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+        updateAndSaveLocation(locationId, atmLocationDto);
+        updateAndSaveLocationTransaction(locationId, atmLocationDto);
     }
 
     private List<Location> findLocations(Integer cityId) {
         List<Location> locations;
         if (cityId == 0) {
-            locations = locationService.findActiveLocations();
+            locations =  locationService.findActiveLocations();
         } else {
             locations = locationService.findActiveLocations(cityId);
         }
@@ -153,12 +159,18 @@ public class AtmService {
         return locationTransaction;
     }
 
-    public void editAtmLocation(Integer locationId, AtmLocationDto atmLocationDto) {
+
+
+    private void updateAndSaveLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = getUpdatedLocation(locationId, atmLocationDto);
         locationService.saveAtmLocation(location);
+    }
+
+    private void updateAndSaveLocationTransaction(Integer locationId, AtmLocationDto atmLocationDto) {
         List<LocationTransaction> locationTransactions = getUpdatedLocationTransactions(locationId, atmLocationDto);
         locationTransactionService.saveLocationTransactions(locationTransactions);
     }
+
 
     private Location getUpdatedLocation(Integer locationId, AtmLocationDto atmLocationDto) {
         Location location = locationService.findLocation(locationId);
