@@ -2,7 +2,12 @@ package ee.valiit.back_bank_27.util;
 
 public class PictureUtil {
 
-    public static String byteArrayToString (byte[] byteArray) {
+    public static String byteArrayToString(byte[] byteArray) {
+        if (byteArray == null) {
+            return null;
+        } else {
         return new String(byteArray);
+        }
+//        return byteArray == null ? null : new String(byteArray);
     }
 }
