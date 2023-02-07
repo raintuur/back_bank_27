@@ -31,7 +31,7 @@ public class LoginService {
     // https://youtu.be/4ZkvNfu9kNw
     public LoginResponse login(String username, String password) {
         // Võtame login() signatuuris parameetritena sisse String tüüpi objektid
-        // Siin signatuuris antakse sellele objekti muutujatele nimeks 'username' ja 'password'
+        // Siin signatuuris antakse nende objekti muutujatele nimeks 'username' ja 'password'
 
         // Kutsume välja meie poolt defineeritud meetodi userService.findUser()
         // See meetod on meil ära defineeritud UserService klassis

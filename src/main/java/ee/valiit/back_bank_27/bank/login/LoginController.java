@@ -28,12 +28,15 @@ public class LoginController {
 
     // Kui meie veebiserverisse tuleb sisse http päring 'GET' 'http://localhost:8080/login?username=admin&password=123'
     // siis käivitatakse selle mäppingu all olev meetod login()
+    // Kaardistamisel mängivad rolli just see URL '/login' ja HTTP meetod 'GET'
     // Kuna login() meetod, on defineeritud nii, et see tagastab LoginResponse tüüpi objekti,
     // siis RETURN'is peab olema LoginResponse tüüpi objekt (see vastus läheb serverist välja JSON sõnumina)
     // Kuna meetodi parameetris on ära defineeritud @RequestParam String tüüpi objektid,
     // siis Spring eeldab, et http sõnumile antakse kaasa request parameeter 'username' ja 'password'
     // Kindlasti peab meetodi signatuuris olema ka see @RequestParam annotatsioonid, sest muidu Spring ei tea,
     // et siia enpoint'ile peaks ka sisse tulema sellised parameetrid
+    // Meetodi käivitamise kaardistamise osas nende parameetrite olemasolu mingit rolli ei mängi - loevad vaid URL ja HTTP meetod.
+    // Küsimus on lihtsalt selles, et kas me soovime siia teenusesse mingit infot kaasa anda, mida saame siis kuidagi kasutada.
 
     // Kui HTTP sõnumite saatmise ja kättesaamise teema on veel endiselt segane, siis palun vaata uuesti "Spring HelloWorld":
     // https://youtu.be/pc9irBCk6rg
@@ -46,7 +49,7 @@ public class LoginController {
     // mida Swagger suudab graafiliselt kuvada ja ka käivitada
     @Operation(summary = "This service enables user to log-in", description = "This service will return error when incorrect credentials are provided")
     // @ApiResponses() alla saab lisada info selle kohta, et milliseid status code see teenus tagastab.
-    // Näiteks saab vea sõbumite ära defineerida ka JSON'i struktuuri (klassi objekti),
+    // Ühtlasi saab ka vea sõnumite esitamise jaoks ära defineerida JSON'i struktuuri (klassi objekti),
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Failed login", content = @Content(schema = @Schema(implementation = ApiError.class)))})
@@ -58,7 +61,7 @@ public class LoginController {
         // https://youtu.be/GvP68LBZiUA
         // https://youtu.be/4ZkvNfu9kNw
 
-        // Kutsume välja meie poolt defineeritud meetodi nimega login()
+        // Kutsume välja meie poolt LoginService klassis defineeritud meetodi nimega login()
         // Meetodi väljakutsumisel anname argumentidena kaasa mingit infot, näiteks:
         //      username = admin
         //      password = 123
