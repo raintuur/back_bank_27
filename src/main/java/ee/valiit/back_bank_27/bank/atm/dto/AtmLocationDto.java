@@ -1,6 +1,6 @@
 package ee.valiit.back_bank_27.bank.atm.dto;
 
-import lombok.Data;
+import  lombok.Data;
 
 import java.util.List;
 

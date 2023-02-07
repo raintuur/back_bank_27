@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationTransactionService {
@@ -17,6 +18,7 @@ public class LocationTransactionService {
     }
 
 
+
     public List<LocationTransaction> findLocationTransactions(Integer locationId) {
         return locationTransactionRepository.findLocationTransactions(locationId);
     }
@@ -24,4 +26,8 @@ public class LocationTransactionService {
     public void saveLocationTransactions(List<LocationTransaction> locationTransactions) {
         locationTransactionRepository.saveAll(locationTransactions);
     }
+    public LocationTransaction findLocation(Integer locationId, Integer transActionId) {
+        return locationTransactionRepository.findLocation(locationId, transActionId).get();
+    }
+
 }
