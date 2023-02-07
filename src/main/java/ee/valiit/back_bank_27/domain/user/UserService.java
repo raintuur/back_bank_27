@@ -38,6 +38,7 @@ public class UserService {
         // Tulemus mähitakse omakorda "Optional" klassi objekti sisse (komm ja kommipaber)
         // Sellel Optional klassil on olemas mugavad meetodid, millega saab kontrollida, et kas leiti mingi tulemus (user objekt pole 'null'
         // või siis ei leitud mingit tulemust.
+        // Vaata ka Status klassis olevaid kommentaare.
         Optional<User> optionalUser = userRepository.findUser(username, password, Status.ACTIVE);
 
         // Kutsume välja Validator klassi staatilise meetodi getValidUser().
