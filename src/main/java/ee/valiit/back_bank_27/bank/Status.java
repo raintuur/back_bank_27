@@ -9,7 +9,7 @@ public class Status {
     //      vaid me saame neid otse kasutada viidates kõigepealt klassile (suure algustähega)
     //      ning siis punkti abil saame väärtuse kätte, näiteks: Status.DEACTIVATED
 
-    // final - muutujale saab anda väärtuse vaid ühe korra. Kompilaator ei lubaks anda sellele muutuja uut väärtust anda.
+    // final - muutujale saab anda väärtuse vaid ühe korra. Kompilaator ei lubaks sellele muutuja uut väärtust anda.
     //      Ehk siis see väärtus jääb garanteerult konstantselt samaks - ehk siis siit ka nimetus konstant
     //      konstandi muutuja nimetus on alati UPPER_SNAKE_CASE
 
