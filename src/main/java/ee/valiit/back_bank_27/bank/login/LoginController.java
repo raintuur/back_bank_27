@@ -50,9 +50,7 @@ public class LoginController {
     @Operation(summary = "This service enables user to log-in", description = "This service will return error when incorrect credentials are provided")
     // @ApiResponses() alla saab lisada info selle kohta, et milliseid status code see teenus tagastab.
     // Ühtlasi saab ka vea sõnumite esitamise jaoks ära defineerida JSON'i struktuuri (klassi objekti),
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Failed login", content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK"), @ApiResponse(responseCode = "404", description = "Failed login", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         // Võtame login() signatuuri parameetris sisse String tüüpi väärtused
         // Siin signatuuris antakse nendele objektidele nimeks 'username' ja 'password'
@@ -60,6 +58,10 @@ public class LoginController {
         // https://youtu.be/EI3XfkdPBc4
         // https://youtu.be/GvP68LBZiUA
         // https://youtu.be/4ZkvNfu9kNw
+
+
+        // Kontrollerisse me äriloogikat ei kirjuta. Kasutame mitmekihilist lähenemist:
+        //      MingiÄriController -> MingiÄriService -> MingiEntityService -> MingiEntityRepository ja saame info kätte entity objektidena
 
         // Kutsume välja meie poolt LoginService klassis defineeritud meetodi nimega login()
         // Meetodi väljakutsumisel anname argumentidena kaasa mingit infot, näiteks:
