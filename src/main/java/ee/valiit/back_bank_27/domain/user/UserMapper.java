@@ -34,7 +34,8 @@ public interface UserMapper {
     // kaardistatakse mõlema objekti need väljad mis omavahel kokku käivad, ehk siis siin näites
     // 'user' objekti väljalt "id" soovime andmeid kanda üle tagastatavale LoginResponse tüüpi objekti 'userId' väljale
     // Need väljad mille nimed ja tüübid on täpselt samasugused, neid me ise kaardistama ei pea, sest MapStruct oskab need kaardistused ise kokku viia
-    // Kui projekti ülesse ehitamisel on MapStruct meetodi implementatsiooni valmis genereerinud, siis tekib IntelliJ's koodi reanumbri
+    // Kui projekti ülesse ehitamisel on MapStruct meetodi implementatsiooni valmis genereerinud, siis tekib IntelliJ's koodi reanumbri juurde väike nooleke alla.
+    // Selle noolekese abil on võimalik hõlpsasti vaadata, et millise lahenduse (implementatsiooni) on MapStruct valmis kirjutanud.
     // Kui MapStruct mäppimise teema on veel endiselt segane, siis palun vaata uuesti "MapStruct mappimine" ja "JPA Buddy mapperite kasutamine"
     // https://youtu.be/BrSMvqcGMio
     // https://youtu.be/AjGcVDcNlm4
