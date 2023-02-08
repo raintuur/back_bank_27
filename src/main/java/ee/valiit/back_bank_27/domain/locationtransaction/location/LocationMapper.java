@@ -31,7 +31,15 @@ public interface LocationMapper {
 
     @Named("stringToByteArray")
     static byte[] stringToByteArray(String picture) {
+        if (picture == null || "".equals(picture)) {
+            return null;
+        }
         byte[] bytes = picture.getBytes(StandardCharsets.UTF_8);
         return bytes;
     }
+
+    @InheritConfiguration(name = "toEntity")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Location updateLocation(AtmLocationDto atmLocationDto, @MappingTarget Location location);
+
 }
